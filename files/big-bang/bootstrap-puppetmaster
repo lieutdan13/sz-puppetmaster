@@ -1,0 +1,54 @@
+#!/bin/bash
+
+PATH='/bin:/sbin:/usr/bin:/usr/sbin'
+
+APT_OPTS=''
+PUPPET_REPO='http://apt.puppetlabs.com/'
+DISTRIB_CODENAME=`awk -F= '/^DISTRIB_CODENAME/ { print $2 }' /etc/lsb-release`
+
+
+if [ "`/usr/bin/id -u`" != "0" ]; then
+	echo "This script must be run as root" 1>&2
+	exit 1
+fi
+
+function add_puppet_repository() {
+	echo "deb ${PUPPET_REPO} ${DISTRIB_CODENAME} main" > /etc/apt/sources.list.d/puppet.list
+	curl --silent ${PUPPET_REPO}/pubkey.gpg | apt-key add - > /dev/null
+	apt-get ${APT_OPTS} update > /dev/null
+}
+
+function install_puppetmaster() {
+	apt-get ${APT_OPTS} update < /dev/null
+	#apt-get ${APT_OPTS} install puppet puppetmaster >/dev/null 2>&1
+	apt-get ${APT_OPTS} install puppet puppetmaster
+	if [ ${?} -ne 0 ]; then
+		echo "Something went wrong with installing Puppetmaster."
+		exit 1
+	fi
+
+	#/etc/init.d/puppetmaster stop>/dev/null 2>&1
+	/etc/init.d/puppetmaster stop
+	if [ ${?} -ne 0 ]; then
+		echo "Something went wrong with stopping Puppetmaster."
+		exit 1
+	fi
+
+	if [ ! -d /etc/puppet/.git ]; then
+		mv /etc/puppet /etc/puppet.original
+		git clone git@github.com:lieutdan13/sz-puppetmaster.git /etc/puppet
+		if [ ${?} -ne 0 ]; then
+			echo "Something went wrong with cloning the puppetmaster repo"
+			exit 1
+		fi
+		rm -rf /etc/puppet.original
+		if [ -f /etc/puppet/files/big-bang/etc_default_puppetmaster ]; then
+			cp /etc/puppet/files/big-bang/etc_default_puppetmaster /etc/default/puppetmaster
+		fi
+	else
+		git pull origin master
+	fi
+}
+
+add_puppet_repository
+install_puppetmaster
