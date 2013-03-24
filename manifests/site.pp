@@ -8,7 +8,4 @@ class test_class {
 	}
 }
 
-# tell puppet on which client to run the class
-node big-bang {
-	include test_class
-}
+include nodes
