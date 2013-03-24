@@ -42,12 +42,15 @@ function install_puppetmaster() {
 			exit 1
 		fi
 		rm -rf /etc/puppet.original
-		if [ -f /etc/puppet/files/big-bang/etc_default_puppetmaster ]; then
-			cp /etc/puppet/files/big-bang/etc_default_puppetmaster /etc/default/puppetmaster
-		fi
 		echo -e "192.168.10.5\tpuppet" >> /etc/hosts
 	else
 		git pull origin master
+	fi
+	if [ -f /etc/puppet/files/big-bang/etc_default_puppetmaster ]; then
+		cp /etc/puppet/files/big-bang/etc_default_puppetmaster /etc/default/puppetmaster
+	fi
+	if [ -f /etc/puppet/files/big-bang/etc_default_puppet ]; then
+		cp /etc/puppet/files/big-bang/etc_default_puppet /etc/default/puppet
 	fi
 }
 
