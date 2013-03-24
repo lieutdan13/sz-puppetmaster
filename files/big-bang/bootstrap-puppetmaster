@@ -52,6 +52,15 @@ function install_puppetmaster() {
 	if [ -f /etc/puppet/files/big-bang/etc_default_puppet ]; then
 		cp /etc/puppet/files/big-bang/etc_default_puppet /etc/default/puppet
 	fi
+	service puppetmaster start
+	service puppet start
+
+	#Cleanup any certs that have automatically been generated
+	puppet cert clean big-bang.schaeferzone.net
+	rm -f /home/devops/.puppet/ssl/certs/big-bang.schaeferzone.net.pem
+	puppet agent -t
+	sleep 5
+	puppet cert --sign big-bang.schaeferzone.net
 }
 
 add_puppet_repository
