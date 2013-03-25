@@ -11,4 +11,11 @@ class test_class {
 
 node big-bang {
         include test_class
+	cron { pull_puppet:
+		command => "cd /etc/puppet && /usr/bin/git pull",
+		user    => root,
+		hour    => '*',
+		minute  => '*/15',
+		ensure  => present
+	}
 }
