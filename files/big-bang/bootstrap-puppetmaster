@@ -46,12 +46,9 @@ function install_puppetmaster() {
 	else
 		git pull origin master
 	fi
-	if [ -f /etc/puppet/files/big-bang/etc_default_puppetmaster ]; then
-		cp /etc/puppet/files/big-bang/etc_default_puppetmaster /etc/default/puppetmaster
-	fi
-	if [ -f /etc/puppet/files/big-bang/etc_default_puppet ]; then
-		cp /etc/puppet/files/big-bang/etc_default_puppet /etc/default/puppet
-	fi
+	cp /etc/puppet/files/big-bang/etc_default_puppetmaster /etc/default/puppetmaster
+	cp /etc/puppet/files/big-bang/etc_default_puppet /etc/default/puppet
+	cp /etc/puppet/files/big-bang/etc_hosts /etc/hosts
 	service puppetmaster start
 	service puppet start
 
