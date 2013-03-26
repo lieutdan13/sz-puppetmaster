@@ -7,6 +7,8 @@ node puppetmaster {
 		ensure  => present
 	}
 
+	package { puppetmaster: ensure => installed }
+
 	service { "puppetmaster":
 		ensure  => "running",
 		enable  => "true",
@@ -21,6 +23,8 @@ node puppetmaster {
 		require => Package["puppetmaster"],
 		content => "/etc/puppet/files/big-bang/etc_default_puppetmaster",
 	}
+
+	package { puppet: ensure => installed }
 
 	service { "puppet":
 		ensure  => "running",
