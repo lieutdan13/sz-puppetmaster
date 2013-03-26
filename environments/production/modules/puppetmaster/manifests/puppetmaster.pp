@@ -1,5 +1,5 @@
 node puppetmaster {
-	cron { pull_puppet:
+	cron { 'pull_puppet':
 		command => "cd /etc/puppet && /usr/bin/git pull > /dev/null",
 		user    => root,
 		hour    => '*',
@@ -7,15 +7,15 @@ node puppetmaster {
 		ensure  => present
 	}
 
-	package { puppetmaster: ensure => installed }
+	package { 'puppetmaster': ensure => installed }
 
-	service { "puppetmaster":
+	service { 'puppetmaster':
 		ensure  => "running",
 		enable  => "true",
 		require => Package["puppetmaster"],
 	}
 
-	file { "/etc/default/puppetmaster":
+	file { '/etc/default/puppetmaster':
 		notify  => Service["puppetmaster"],
 		mode    => 644,
 		owner   => "root",
@@ -24,15 +24,15 @@ node puppetmaster {
 		content => "/etc/puppet/files/big-bang/etc_default_puppetmaster",
 	}
 
-	package { puppet: ensure => installed }
+	package { 'puppet': ensure => installed }
 
-	service { "puppet":
+	service { 'puppet':
 		ensure  => "running",
 		enable  => "true",
 		require => Package["puppet"],
 	}
 
-	file { "/etc/default/puppet":
+	file { '/etc/default/puppet':
 		notify  => Service["puppet"],
 		mode    => 644,
 		owner   => "root",
