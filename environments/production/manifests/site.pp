@@ -12,7 +12,7 @@ class test_class {
 node big-bang {
         include test_class
 	cron { pull_puppet:
-		command => "cd /etc/puppet && /usr/bin/git pull -q",
+		command => "cd /etc/puppet && /usr/bin/git pull > /dev/null",
 		user    => root,
 		hour    => '*',
 		minute  => '*/2',
