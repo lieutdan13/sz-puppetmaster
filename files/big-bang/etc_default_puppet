@@ -5,5 +5,7 @@
 # Setting this to "no" keeps the puppet agent service from running.
 START=yes
 
+PUPPET_LOG=/var/log/puppet/agent.log
+
 # Startup options
 DAEMON_OPTS=""

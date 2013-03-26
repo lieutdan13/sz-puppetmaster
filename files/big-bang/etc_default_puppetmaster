@@ -4,6 +4,8 @@
 # have this set to "no"
 START=yes
 
+PUPPETMASTER_LOG=/var/log/puppet/master.log
+
 # Startup options
 DAEMON_OPTS=""
 
