@@ -1,4 +1,4 @@
-node puppetmaster {
+class puppetmaster {
 	cron { 'pull_puppet':
 		command => "cd /etc/puppet && /usr/bin/git pull > /dev/null",
 		user    => root,
