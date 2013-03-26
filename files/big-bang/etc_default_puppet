@@ -9,3 +9,4 @@ PUPPET_LOG=/var/log/puppet/agent.log
 
 # Startup options
 DAEMON_OPTS=""
+
