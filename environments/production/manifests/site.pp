@@ -15,7 +15,7 @@ node big-bang {
 		command => "cd /etc/puppet && /usr/bin/git pull",
 		user    => root,
 		hour    => '*',
-		minute  => '*/15',
+		minute  => '*/2',
 		ensure  => present
 	}
 }
