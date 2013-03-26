@@ -21,7 +21,7 @@ class puppetmaster {
 		owner   => "root",
 		group   => "root",
 		require => Package["puppetmaster"],
-		content => "/etc/puppet/files/big-bang/etc_default_puppetmaster",
+		source => "/etc/puppet/files/big-bang/etc_default_puppetmaster",
 	}
 
 	package { 'puppet': ensure => installed }
@@ -38,6 +38,6 @@ class puppetmaster {
 		owner   => "root",
 		group   => "root",
 		require => Package["puppet"],
-		content => "/etc/puppet/files/big-bang/etc_default_puppet",
+		source => "/etc/puppet/files/big-bang/etc_default_puppet",
 	}
 }
