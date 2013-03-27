@@ -22,7 +22,7 @@ class puppetmaster {
 		group   => "root",
 		require => Package["puppetmaster"],
 		#source => "puppet:///environments/production/modules/puppetmaster/files/etc_default_puppetmaster",
-		source => "puppet:///modules/etc_default_puppetmaster",
+		source => "puppet:///modules/puppetmaster/etc_default_puppetmaster",
 	}
 
 	package { 'puppet': ensure => installed }
@@ -40,6 +40,6 @@ class puppetmaster {
 		group   => "root",
 		require => Package["puppet"],
 		#source => "puppet:///environments/production/modules/puppetmaster/files/etc_default_puppet",
-		source => "puppet:///modules/etc_default_puppet",
+		source => "puppet:///modules/puppetmaster/etc_default_puppet",
 	}
 }
