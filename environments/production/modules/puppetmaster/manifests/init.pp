@@ -21,8 +21,14 @@ class puppetmaster {
 		owner   => "root",
 		group   => "root",
 		require => Package["puppetmaster"],
-		#source => "puppet:///environments/production/modules/puppetmaster/files/etc_default_puppetmaster",
 		source => "puppet:///modules/puppetmaster/etc_default_puppetmaster",
+	}
+
+	file { '/etc/hosts':
+		mode    => 644,
+		owner   => "root",
+		group   => "root",
+		source => "puppet:///modules/puppetmaster/etc_hosts",
 	}
 
 	package { 'puppet': ensure => installed }
@@ -39,7 +45,6 @@ class puppetmaster {
 		owner   => "root",
 		group   => "root",
 		require => Package["puppet"],
-		#source => "puppet:///environments/production/modules/puppetmaster/files/etc_default_puppet",
 		source => "puppet:///modules/puppetmaster/etc_default_puppet",
 	}
 }
