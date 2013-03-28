@@ -11,6 +11,6 @@ node default {
         include test_class
 }
 
-node big-bang extends default {
+node big-bang inherits default {
 	include puppetmaster
 }
