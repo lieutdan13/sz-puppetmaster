@@ -1,7 +1,5 @@
-
-# Create /tmp/testfile if it doesn't exist
 class test_class {
-	file { "/tmp/testfile":
+	file { "/tmp/puppet-agent-successfull":
 		ensure => present,
 		mode   => 644,
 		owner  => root,
@@ -9,7 +7,10 @@ class test_class {
 	}
 }
 
-node big-bang {
+node default {
         include test_class
+}
+
+node big-bang extends default {
 	include puppetmaster
 }
