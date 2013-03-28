@@ -5,4 +5,5 @@ class sz-dns {
 		owner  => root,
 		group  => root
 	}
+	include dns::server
 }
