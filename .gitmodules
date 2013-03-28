@@ -1,5 +1,5 @@
-[submodule "modules/puppet-dns"]
-	path = modules/puppet-dns
+[submodule "modules/dns"]
+	path = modules/dns
 	url = git@github.com:lieutdan13/puppet-dns.git
 [submodule "modules/puppet-concat"]
 	path = modules/puppet-concat
