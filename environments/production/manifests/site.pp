@@ -14,3 +14,7 @@ node default {
 node big-bang inherits default {
 	include puppetmaster
 }
+
+node raspberrypi inherits default {
+	include sz-dns
+}
