@@ -9,6 +9,7 @@ class sz-dns inherits dns::server {
 		group   => "bind",
 		require => [File['/etc/bind'], Class['dns::server::install']],
 		notify  => Class['dns::server::service'],
+		source => "puppet:///modules/sz-dns/named.conf.options",
         }
 
 	dns::zone { 'marketmaps.co':
