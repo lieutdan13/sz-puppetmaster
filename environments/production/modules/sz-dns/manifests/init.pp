@@ -6,6 +6,12 @@ class sz-dns inherits dns::server {
 		group  => root
 	}
 
+	dns::zone { 'marketmaps.co':
+		soa         => 'ns1.schaeferzone.net',
+		soa_email   => 'dan.schaeferzone.net',
+		nameservers => ['ns1.schaeferzone.net']
+	}
+
 	dns::zone { 'schaeferzone.net':
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
