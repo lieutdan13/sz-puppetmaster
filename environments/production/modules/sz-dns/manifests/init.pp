@@ -4,7 +4,6 @@ class sz-dns inherits dns::server {
 	}
 
 	file { "/etc/bind/named.conf.options":
-		notify  => Service["dns"],
 		mode    => 644,
 		owner   => "root",
 		group   => "bind",
