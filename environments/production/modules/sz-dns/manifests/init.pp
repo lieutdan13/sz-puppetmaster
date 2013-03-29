@@ -1,10 +1,16 @@
 class sz-dns inherits dns::server {
 	file { "/tmp/sz-dns-successful":
-		ensure => present,
-		mode   => 644,
-		owner  => root,
-		group  => root
+		ensure => absent,
 	}
+
+	file { "/etc/bind/named.conf.options":
+		notify  => Service["dns"],
+		mode    => 644,
+		owner   => "root",
+		group   => "bind",
+		require => [File['/etc/bind'], Class['dns::server::install']],
+		notify  => Class['dns::server::service'],
+        }
 
 	dns::zone { 'marketmaps.co':
 		soa         => 'ns1.schaeferzone.net',
