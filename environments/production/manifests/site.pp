@@ -21,7 +21,6 @@ class test_class {
 node default {
 	include test_class
 	include utility
-	include ntp
 	include puppetagent
 
 	class { "ntp":
