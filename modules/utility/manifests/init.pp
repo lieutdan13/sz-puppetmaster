@@ -1,4 +1,4 @@
-import classes/*.pp
+#import classes/*.pp
 
 class utility {
 	file { "/tmp/utility":
