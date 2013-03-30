@@ -9,7 +9,7 @@ class test_class {
 		ensure  => present,
 		mode    => 644,
 		owner   => root,
-		group   => root
+		group   => root,
 		content => $operatingsystem ? {
 			"Ubuntu" => "I'm an Ubuntu Machine",
 			"Debian" => "I'm a Debian Machine",
