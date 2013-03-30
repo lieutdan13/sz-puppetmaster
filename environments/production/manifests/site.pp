@@ -20,6 +20,7 @@ class test_class {
 
 node default {
         include test_class
+	include utility
 }
 
 node big-bang inherits default {
