@@ -1,4 +1,7 @@
 class sz-dns inherits dns::server {
+
+	$sz_zone = "schaeferzone.net";
+
 	file { "/tmp/sz-dns-successful":
 		ensure => absent,
 	}
@@ -23,7 +26,7 @@ class sz-dns inherits dns::server {
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1'],
-		serial      => 2013032801
+		serial      => 2013033000
 	}
 
 	dns::zone { '10.168.192.IN-ADDR.ARPA':
@@ -36,20 +39,51 @@ class sz-dns inherits dns::server {
 	# A Records
 	dns::record::a {
 		'big-bang':
-			zone => 'schaeferzone.net',
+			zone => $sz_zone,
 			data => ['192.168.10.5'],
 			ptr  => true;
 		'raspberrypi':
-			zone => 'schaeferzone.net',
+			zone => $sz_zone,
 			data => ['192.168.10.10'],
 			ptr  => true;
 		'nebula':
-			zone => 'schaeferzone.net',
+			zone => $sz_zone,
 			data => ['192.168.10.15'],
 			ptr  => true;
 		'eclipse':
-			zone => 'schaeferzone.net',
+			zone => $sz_zone,
 			data => ['192.168.10.25'],
 			ptr  => true;
+	}
+
+	# CNAME Records
+	dns::record::cname {
+		'':
+			zone => $sz_zone,
+			data => 'eclipse';
+		# Everything else not defined
+		'@':
+			zone => $sz_zone,
+			data => 'eclipse';
+		'imap':
+			zone => $sz_zone,
+			data => 'mail02.logicpartners.com';
+		'mail':
+			zone => $sz_zone,
+			data => 'mail02.logicpartners.com';
+		'smtp':
+			zone => $sz_zone,
+			data => 'mail02.logicpartners.com';
+		'www':
+			zone => $sz_zone,
+			data => 'eclipse';
+	}
+
+	# MX Record
+	dns::record::mx {
+		'mx,0':
+			zone => $sz_zone,
+			preference => 0,
+			data => 'mail02.logicpartners.com';
 	}
 }
