@@ -14,4 +14,12 @@ class utility {
         }
 
 	package { "vim-tiny": ensure => 'latest' }
+
+	file { "/etc/vim/vimrc.local":
+		ensure  => present,
+		mode    => 644,
+		owner   => root,
+		group   => root,
+		source  => "puppet:///modules/utility/etc_vim_vimrc.local"
+	}
 }
