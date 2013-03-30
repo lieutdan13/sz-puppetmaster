@@ -11,7 +11,7 @@ class puppetagent {
 	package { 'puppet': ensure => installed }
 
 	service { 'puppet':
-		ensure  => "running",
+		ensure  => "stopped",
 		enable  => "true",
 		require => Package["puppet"],
 	}
