@@ -1,6 +1,6 @@
 class puppetmaster {
 	cron { 'pull_puppet':
-		command => "cd /etc/puppet && /usr/bin/git pull > /dev/null && /usr/bin/git submodule update",
+		command => "cd /etc/puppet && /usr/bin/git pull > /dev/null && /usr/bin/git submodule init && /usr/bin/git submodule update",
 		user    => root,
 		hour    => '*',
 		minute  => [ 2 , 32 ],
