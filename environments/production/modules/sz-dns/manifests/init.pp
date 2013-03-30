@@ -26,7 +26,7 @@ class sz-dns inherits dns::server {
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1'],
-		serial      => 2013033001
+		serial      => 2013033002
 	}
 
 	dns::zone { '10.168.192.IN-ADDR.ARPA':
@@ -58,11 +58,11 @@ class sz-dns inherits dns::server {
 
 	# CNAME Records
 	dns::record::cname {
-		'.':
+		'@':
 			zone => $sz_zone,
 			data => 'eclipse.schaeferzone.net';
 		# Everything else not defined
-		'@':
+		'*':
 			zone => $sz_zone,
 			data => 'eclipse.schaeferzone.net';
 		'imap':
