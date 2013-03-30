@@ -6,6 +6,8 @@ class sz-dns inherits dns::server {
 		ensure => absent,
 	}
 
+	package { "dnsutils": ensure  => latest }
+
 	file { "/etc/bind/named.conf.options":
 		mode    => 644,
 		owner   => "root",
