@@ -40,7 +40,7 @@ class sz-dns inherits dns::server {
 	dns::record::a {
 		'@':
 			zone => $sz_zone,
-			data => ['192.168.10.25'],
+			data => ['192.168.10.25'];
 		'big-bang':
 			zone => $sz_zone,
 			data => ['192.168.10.5'],
