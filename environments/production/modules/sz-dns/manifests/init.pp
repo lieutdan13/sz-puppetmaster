@@ -58,7 +58,7 @@ class sz-dns inherits dns::server {
 
 	# CNAME Records
 	dns::record::cname {
-		'':
+		'.':
 			zone => $sz_zone,
 			data => 'eclipse';
 		# Everything else not defined
