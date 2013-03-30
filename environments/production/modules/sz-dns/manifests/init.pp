@@ -1,6 +1,6 @@
 class sz-dns inherits dns::server {
 
-	$sz_zone = "schaeferzone.net";
+	$sz_zone = "schaeferzone.net"
 
 	file { "/tmp/sz-dns-successful":
 		ensure => absent,
