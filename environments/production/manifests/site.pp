@@ -19,9 +19,15 @@ class test_class {
 }
 
 node default {
-        include test_class
+	include test_class
 	include utility
 	include puppetagent
+
+	class { "ntp":
+	        ensure     => running,
+	        servers    => [ 'time1.google.com', 'time2.google.com', 'time3.google.com', 'time4.google.com' ],
+		autoupdate => true,
+	}
 }
 
 node big-bang inherits default {
