@@ -60,11 +60,11 @@ class sz-dns inherits dns::server {
 	dns::record::cname {
 		'.':
 			zone => $sz_zone,
-			data => 'eclipse';
+			data => 'eclipse.schaeferzone.net';
 		# Everything else not defined
 		'@':
 			zone => $sz_zone,
-			data => 'eclipse';
+			data => 'eclipse.schaeferzone.net';
 		'imap':
 			zone => $sz_zone,
 			data => 'mail02.logicpartners.com';
@@ -76,13 +76,14 @@ class sz-dns inherits dns::server {
 			data => 'mail02.logicpartners.com';
 		'www':
 			zone => $sz_zone,
-			data => 'eclipse';
+			data => 'eclipse.schaeferzone.net';
 	}
 
 	# MX Record
 	dns::record::mx {
-		'mx,0':
+		"mx,0,${sz_zone}":
 			zone => $sz_zone,
+			host => '@',
 			preference => 0,
 			data => 'mail02.logicpartners.com';
 	}
