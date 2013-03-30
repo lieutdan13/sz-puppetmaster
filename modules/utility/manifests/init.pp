@@ -21,6 +21,7 @@ class utility {
 		source  => "puppet:///modules/utility/usr_local_bin_randomSleep"
 	}
 
+	package { "apt-file": ensure => 'latest' }
 	package { "vim": ensure => 'latest' }
 	package { "vim-tiny": ensure => 'latest' }
 
