@@ -31,13 +31,13 @@ class puppetmaster {
 		source => "puppet:///modules/puppetmaster/etc_hosts",
 	}
 
-	package { 'puppet': ensure => installed }
+#	package { 'piuppet': ensure => installed }
 
-	service { 'puppet':
-		ensure  => "running",
-		enable  => "true",
-		require => Package["puppet"],
-	}
+#	service { 'puppet':
+#		ensure  => "running",
+#		enable  => "true",
+#		require => Package["puppet"],
+#	}
 
 	file { '/etc/default/puppet':
 		notify  => Service["puppet"],

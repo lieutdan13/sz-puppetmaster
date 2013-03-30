@@ -3,7 +3,7 @@ class puppetagent {
 		command => "puppet agent --onetime",
 		user    => root,
 		hour    => '*',
-		minute  => '1/2',
+		minute  => '1-59/2',
 		ensure  => present
 	}
 
