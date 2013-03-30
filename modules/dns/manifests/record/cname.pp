@@ -9,6 +9,7 @@ define dns::record::cname (
   $qualified_data = $data ? {
     '@'     => $data,
     /\.$/   => $data,
+    ''      => $data,
     default => "${data}."
   }
 
