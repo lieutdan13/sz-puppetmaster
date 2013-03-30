@@ -13,6 +13,14 @@ class utility {
                 },
         }
 
+	file { "/usr/local/bin/randomSleep":
+		ensure  => present,
+		mode    => 755,
+		owner   => root,
+		group   => root,
+		source  => "puppet:///modules/utility/usr_local_bin_randomSleep"
+	}
+
 	package { "vim": ensure => 'latest' }
 	package { "vim-tiny": ensure => 'latest' }
 

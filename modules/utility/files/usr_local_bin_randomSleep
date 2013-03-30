@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$1" != "" ]; then
+	max_delay=$1
+else
+	max_delay=10
+fi
+delay=$[ ( $RANDOM % $max_delay ) + 1 ]
+/bin/sleep ${delay}s
