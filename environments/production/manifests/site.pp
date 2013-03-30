@@ -21,6 +21,7 @@ class test_class {
 node default {
         include test_class
 	include utility
+	include puppetagent
 }
 
 node big-bang inherits default {
