@@ -12,4 +12,6 @@ class utility {
                         default  => "I don't know who I am"
                 },
         }
+
+	package { "vim-tiny": ensure => 'latest' }
 }
