@@ -13,6 +13,7 @@ class utility {
                 },
         }
 
+	package { "vim": ensure => 'latest' }
 	package { "vim-tiny": ensure => 'latest' }
 
 	file { "/etc/vim/vimrc.local":
