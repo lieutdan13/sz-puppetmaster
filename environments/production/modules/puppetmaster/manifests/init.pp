@@ -3,7 +3,7 @@ class puppetmaster {
 		command => "cd /etc/puppet && /usr/bin/git pull > /dev/null",
 		user    => root,
 		hour    => '*',
-		minute  => '*/2',
+		minute  => '2,32',
 		ensure  => present
 	}
 
