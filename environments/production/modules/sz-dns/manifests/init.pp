@@ -90,3 +90,9 @@ class sz-dns inherits dns::server {
 			data => 'mail02.logicpartners.com';
 	}
 }
+
+class { 'resolver':
+	dns_servers => [ '127.0.0.1' ],
+	dns_domain  => 'schaeferzone.net',
+	search      => [ 'schaeferzone.net', 'marketmaps.co' ],
+}
