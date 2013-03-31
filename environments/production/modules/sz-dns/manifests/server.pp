@@ -1,6 +1,7 @@
 class sz-dns::server inherits dns::server {
 
 	$sz_zone = "schaeferzone.net"
+	$mm_zone = "marketmaps.co"
 
 	file { "/tmp/sz-dns-successful":
 		ensure => absent,
@@ -27,7 +28,7 @@ class sz-dns::server inherits dns::server {
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1.schaeferzone.net'],
-		serial      => 2013032800
+		serial      => 2013033100
 	}
 
 	dns::zone { 'schaeferzone.net':
@@ -85,6 +86,11 @@ class sz-dns::server inherits dns::server {
 		'www':
 			zone => $sz_zone,
 			data => 'eclipse.schaeferzone.net';
+
+		# MarketMaps
+		'dev':
+			zone => $mm_zone,
+			data => 'nebula.schaeferzone.net';
 	}
 
 	# MX Record
