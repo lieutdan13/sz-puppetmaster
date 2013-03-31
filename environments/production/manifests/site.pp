@@ -35,5 +35,5 @@ node big-bang inherits default {
 }
 
 node raspberrypi inherits default {
-	include sz-dns
+	include sz-dns::server
 }
