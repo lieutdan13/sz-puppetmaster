@@ -10,3 +10,6 @@
 [submodule "modules/resolver"]
 	path = modules/resolver
 	url = git@github.com:lieutdan13/puppet-resolver.git
+[submodule "modules/puppi"]
+	path = modules/puppi
+	url = git@github.com:lieutdan13/puppi.git
