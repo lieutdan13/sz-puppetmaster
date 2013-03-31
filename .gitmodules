@@ -7,3 +7,6 @@
 [submodule "modules/concat"]
 	path = modules/concat
 	url = git@github.com:lieutdan13/puppet-concat.git
+[submodule "modules/resolver"]
+	path = modules/resolver
+	url = git@github.com:lieutdan13/puppet-resolver.git
