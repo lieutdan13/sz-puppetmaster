@@ -32,6 +32,7 @@ node default {
 
 node big-bang inherits default {
 	include puppetmaster
+	include sz-dns::client
 }
 
 node raspberrypi inherits default {
