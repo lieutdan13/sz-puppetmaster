@@ -1,7 +1,7 @@
 class sz-dns::client {
 
 	file { "/tmp/sz-dns-client-successful":
-		ensure => absent,
+		ensure => present,
 	}
 
 	package { "dnsutils": ensure  => latest }
