@@ -1,6 +1,6 @@
 class puppetagent {
 	cron { 'run_agent':
-		ensure  => present,
+		ensure  => absent,
 		command => "/usr/local/bin/randomSleep 30; puppet agent --onetime --no-daemonize --logdest syslog > /dev/null 2>&1",
 		user    => root,
 		hour    => '*',
