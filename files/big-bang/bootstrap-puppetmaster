@@ -5,60 +5,107 @@ PATH='/bin:/sbin:/usr/bin:/usr/sbin'
 APT_OPTS=''
 PUPPET_REPO='http://apt.puppetlabs.com/'
 DISTRIB_CODENAME=`awk -F= '/^DISTRIB_CODENAME/ { print $2 }' /etc/lsb-release`
+KEY_USER=`whoami`
+KEY_HOST=`hostname --short`
 
 
-if [ "`/usr/bin/id -u`" != "0" ]; then
-	echo "This script must be run as root" 1>&2
-	exit 1
-fi
+#if [ "`/usr/bin/id -u`" != "0" ]; then
+#	echo "This script must be run as root" 1>&2
+#	exit 1
+#fi
+
+function install_dependencies() {
+	echo "Installing git"
+	sudo apt-get -y install git > /dev/null
+	if [ ${?} -ne 0 ]; then
+		echo "Something went wrong with installing Git."
+		exit 1
+	fi
+
+	echo "Installing python-software-properties"
+	sudo apt-get -y install python-software-properties > /dev/null
+	if [ ${?} -ne 0 ]; then
+		echo "Something went wrong with installing python-software-properties."
+		exit 1
+	fi
+}
 
 function add_puppet_repository() {
-	echo "deb ${PUPPET_REPO} ${DISTRIB_CODENAME} main" > /etc/apt/sources.list.d/puppet.list
-	curl --silent ${PUPPET_REPO}/pubkey.gpg | apt-key add - > /dev/null
-	apt-get ${APT_OPTS} update > /dev/null
+	echo "Adding the Puppet Apt Repository"
+	if [ ! -f /etc/apt/sources.list.d/puppet.list ]; then
+		echo "deb ${PUPPET_REPO} ${DISTRIB_CODENAME} main" | sudo tee --append /etc/apt/sources.list.d/puppet.list > /dev/null
+		curl --silent ${PUPPET_REPO}/pubkey.gpg | sudo apt-key add - > /dev/null
+	fi
+	sudo apt-get -y update > /dev/null
+}
+
+function configure_git() {
+	if [ ! -f ~/.ssh/$KEY_USER@$KEY_HOST ]; then
+		echo "Generating an RSA key to add to GitHub"
+		ssh-keygen -t rsa -C"$KEY_USER@$KEY_HOST" -f ~/.ssh/$KEY_USER@$KEY_HOST
+	fi
+	echo "Add the following key to GitHub and name it $KEY_USER@$KEY_HOST"
+	cat ~/.ssh/$KEY_USER@$KEY_HOST.pub
+	echo -n "Press Enter to continue"
+	read
+
+	echo "Configuring git for $KEY_USER"
+	echo -n "Enter your full name: "
+	read full_name
+	git config --global user.name "$full_name"
+	echo -n "Enter your email address: "
+	read email
+	git config --global user.email "$email"
+	git config --global color.ui auto
+
+	if [ ! -f ~/.ssh/config ]; then
+		echo -e "Host github.com
+        Hostname github.com
+        User git
+        IdentityFile ~/.ssh/$KEY_USER@$KEY_HOST
+        IdentitiesOnly yes" >> ~/.ssh/config
+	fi
+
+	sudo rsync -rptv ~$KEY_USER/.ssh/ /root/.ssh/
 }
 
 function install_puppetmaster() {
-	apt-get ${APT_OPTS} update < /dev/null
-	#apt-get ${APT_OPTS} install puppet puppetmaster >/dev/null 2>&1
-	apt-get ${APT_OPTS} install puppet puppetmaster
+	echo "Installing Puppetmaster"
+	sudo apt-get -y install puppet puppetmaster > /dev/null
 	if [ ${?} -ne 0 ]; then
 		echo "Something went wrong with installing Puppetmaster."
 		exit 1
 	fi
 
-	#/etc/init.d/puppetmaster stop>/dev/null 2>&1
-	/etc/init.d/puppetmaster stop
+	sudo /etc/init.d/puppetmaster stop
 	if [ ${?} -ne 0 ]; then
 		echo "Something went wrong with stopping Puppetmaster."
 		exit 1
 	fi
 
 	if [ ! -d /etc/puppet/.git ]; then
-		mv /etc/puppet /etc/puppet.original
-		git clone git@github.com:lieutdan13/sz-puppetmaster.git /etc/puppet
+		sudo mv /etc/puppet /etc/puppet.original
+		sudo git clone git@github.com:lieutdan13/sz-puppetmaster.git /etc/puppet
 		if [ ${?} -ne 0 ]; then
 			echo "Something went wrong with cloning the puppetmaster repo"
 			exit 1
 		fi
-		rm -rf /etc/puppet.original
-		echo -e "192.168.10.5\tpuppet" >> /etc/hosts
-	else
-		git pull origin master
+		sudo rm -rf /etc/puppet.original
 	fi
-	cp /etc/puppet/files/big-bang/etc_default_puppetmaster /etc/default/puppetmaster
-	cp /etc/puppet/files/big-bang/etc_default_puppet /etc/default/puppet
-	cp /etc/puppet/files/big-bang/etc_hosts /etc/hosts
-	service puppetmaster start
-	service puppet start
+	sudo cp /etc/puppet/modules/puppetmaster/files/etc_default_puppetmaster /etc/default/puppetmaster
+	sudo cp /etc/puppet/modules/puppetmaster/files/etc_default_puppet /etc/default/puppet
+	sudo cp /etc/puppet/modules/puppetmaster/files/etc_hosts /etc/hosts
+	sudo service puppetmaster start
 
 	#Cleanup any certs that have automatically been generated
-	puppet cert clean big-bang.schaeferzone.net
-	rm -f /home/devops/.puppet/ssl/certs/big-bang.schaeferzone.net.pem
-	puppet agent -t
+	sudo puppet cert clean big-bang.schaeferzone.net
+	sudo rm -f /home/devops/.puppet/ssl/certs/big-bang.schaeferzone.net.pem
+	sudo puppet agent -t
 	sleep 5
-	puppet cert --sign big-bang.schaeferzone.net
+	sudo puppet cert --sign big-bang.schaeferzone.net
 }
 
+install_dependencies
 add_puppet_repository
+configure_git
 install_puppetmaster
