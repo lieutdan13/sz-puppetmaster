@@ -9,11 +9,6 @@ KEY_USER=`whoami`
 KEY_HOST=`hostname --short`
 
 
-#if [ "`/usr/bin/id -u`" != "0" ]; then
-#	echo "This script must be run as root" 1>&2
-#	exit 1
-#fi
-
 function install_dependencies() {
 	echo "Installing git"
 	sudo apt-get -y install git > /dev/null
@@ -66,7 +61,7 @@ function configure_git() {
         IdentitiesOnly yes" >> ~/.ssh/config
 	fi
 
-	sudo rsync -rptv ~$KEY_USER/.ssh/ /root/.ssh/
+	sudo rsync -rptv ~/.ssh/ /root/.ssh/
 }
 
 function install_puppetmaster() {
@@ -95,14 +90,17 @@ function install_puppetmaster() {
 	sudo cp /etc/puppet/modules/puppetmaster/files/etc_default_puppetmaster /etc/default/puppetmaster
 	sudo cp /etc/puppet/modules/puppetmaster/files/etc_default_puppet /etc/default/puppet
 	sudo cp /etc/puppet/modules/puppetmaster/files/etc_hosts /etc/hosts
-	sudo service puppetmaster start
 
 	#Cleanup any certs that have automatically been generated
 	sudo puppet cert clean big-bang.schaeferzone.net
+	sudo puppet cert clean big-bang
+	sudo find /var/lib/puppet/ssl | grep big-bang | sudo xargs rm -f
 	sudo rm -f /home/devops/.puppet/ssl/certs/big-bang.schaeferzone.net.pem
+	sudo service puppetmaster start
 	sudo puppet agent -t
 	sleep 5
 	sudo puppet cert --sign big-bang.schaeferzone.net
+	sudo puppet agent -t
 }
 
 install_dependencies
