@@ -101,6 +101,7 @@ function install_puppetmaster() {
 	sleep 5
 	sudo puppet cert --sign big-bang.schaeferzone.net
 	sudo puppet agent -t
+	sudo puppet agent -t
 }
 
 install_dependencies
