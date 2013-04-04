@@ -26,7 +26,7 @@ node default {
 	host { "big-bang.schaeferzone.net":
 		comment    => "Just in case DNS is down, we want to know how to get to the Master",
 		ensure     => present,
-		host_aliases => [ 'big-bang.schaeferzone.net', 'big-bang' ],
+		host_aliases => [ 'big-bang' ],
 		ip         => '192.168.10.5',
 		name       => 'big-bang.schaeferzone.net',
 	}
