@@ -13,3 +13,6 @@
 [submodule "modules/puppi"]
 	path = modules/puppi
 	url = git@github.com:lieutdan13/puppi.git
+[submodule "modules/network"]
+	path = modules/network
+	url = git@github.com:lieutdan13/puppet-module-network.git
