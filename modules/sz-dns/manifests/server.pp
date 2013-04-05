@@ -9,12 +9,6 @@ class sz-dns::server inherits dns::server {
 
 	package { "dnsutils": ensure  => latest }
 
-	class { 'resolver':
-		dns_servers => [ '127.0.0.1' ],
-		dns_domain  => 'schaeferzone.net',
-		search      => [ 'schaeferzone.net', 'marketmaps.co' ],
-	}
-
 	file { "/etc/bind/named.conf.options":
 		mode    => 644,
 		owner   => "root",
