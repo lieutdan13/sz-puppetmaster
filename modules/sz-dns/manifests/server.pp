@@ -3,11 +3,8 @@ class sz-dns::server inherits dns::server {
 	$sz_zone = "schaeferzone.net"
 	$mm_zone = "marketmaps.co"
 
-	file { "/tmp/sz-dns-successful":
-		ensure => absent,
-	}
-
 	package { "dnsutils": ensure  => latest }
+	package { "resolvconf": ensure  => latest }
 
 	file { "/etc/bind/named.conf.options":
 		mode    => 644,
