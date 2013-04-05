@@ -24,7 +24,12 @@ node big-bang inherits default {
 	class { "network::interfaces":
 		interfaces => {
 			"eth0" => {
-				"method" => "dhcp",
+				"method"     => "static",
+				"address"    => "192.168.10.5",
+				"netmask"    => "255.255.255.0",
+				"gateway"    => "192.168.10.1",
+				"dns-domain" => "schaeferzone.net",
+				"dns-nameservers => [ $local_dns_ip, "8.8.8.8", "8.8.4.4" ],
 			}
 		},
 		auto => ["eth0"]
