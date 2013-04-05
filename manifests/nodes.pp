@@ -30,7 +30,7 @@ node big-bang inherits default {
 				"gateway"    => "192.168.10.1",
 				"dns-domain" => "schaeferzone.net",
 				"dns-search" => "schaeferzone.net marketmaps.co",
-				"dns-nameservers" => "$local_dns_ip 8.8.8.8 8.8.4.4",
+				"dns-nameservers" => "$local_dns_ip 8.8.8.8 8.8.4.4 156.154.70.1",
 			}
 		},
 		auto => ["eth0"]
