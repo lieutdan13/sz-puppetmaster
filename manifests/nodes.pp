@@ -30,7 +30,7 @@ node big-bang inherits default {
 				"gateway"    => "192.168.10.1",
 				"dns-domain" => "schaeferzone.net",
 				"dns-search" => "schaeferzone.net marketmaps.co",
-				"dns-nameservers" => "$local_dns_ip 8.8.8.8 8.8.4.4 156.154.70.1",
+				"dns-nameservers" => "$local_dns_ip 8.8.8.8 8.8.4.4",
 			}
 		},
 		auto => ["eth0"]
@@ -41,5 +41,19 @@ node big-bang inherits default {
 }
 
 node raspberrypi inherits puppetagent {
+	class { "network::interfaces":
+		interfaces => {
+			"eth0" => {
+				"method"     => "static",
+				"address"    => "192.168.10.10",
+				"netmask"    => "255.255.255.0",
+				"gateway"    => "192.168.10.1",
+				"dns-domain" => "schaeferzone.net",
+				"dns-search" => "schaeferzone.net marketmaps.co",
+				"dns-nameservers" => "127.0.0.1 8.8.8.8 8.8.4.4",
+			}
+		},
+		auto => ["eth0"]
+	}
 	include sz-dns::server
 }
