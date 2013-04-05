@@ -18,4 +18,4 @@ class test_class {
 	}
 }
 
-include nodes.pp
+import "nodes"
