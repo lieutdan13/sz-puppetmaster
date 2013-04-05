@@ -29,7 +29,7 @@ node big-bang inherits default {
 				"netmask"    => "255.255.255.0",
 				"gateway"    => "192.168.10.1",
 				"dns-domain" => "schaeferzone.net",
-				"dns-nameservers => [ $local_dns_ip, "8.8.8.8", "8.8.4.4" ],
+				"dns-nameservers" => [ $local_dns_ip, "8.8.8.8", "8.8.4.4" ],
 			}
 		},
 		auto => ["eth0"]
