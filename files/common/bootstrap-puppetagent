@@ -13,7 +13,7 @@ function check_hostname() {
 	ping -c 3 $HOST_NAME &> /dev/null
 	if [ $? -ne 0 ]; then
 		echo "Adding a /etc/hosts record for $HOST_NAME"
-		echo -e "127.0.1.1\t$HOSTNAME" | sudo tee --append /etc/hosts
+		echo -e "127.0.1.1\t$HOST_NAME" | sudo tee --append /etc/hosts
 		require_reboot=1
 		ping -c 3 $HOST_NAME &> /dev/null
 		if [ $? -ne 0 ]; then
