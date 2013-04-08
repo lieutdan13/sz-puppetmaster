@@ -4,7 +4,7 @@ PATH='/bin:/sbin:/usr/bin:/usr/sbin'
 
 HOST_DOMAIN="schaeferzone.net"
 HOST_NAME="`hostname --short`.$HOST_DOMAIN"
-MASTER_HOST_NAME="big-bang.schaeferzone.net"
+MASTER_HOST_NAME="puppet"
 MASTER_IP="192.168.10.5"
 
 if [ "`whoami`" != "root" ]; then
