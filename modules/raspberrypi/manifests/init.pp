@@ -21,7 +21,7 @@ class raspberrypi {
                 'xserver-common',
                 'x11-xfs-utils',
                 'x11-xserver-utils',
-                'xinit''
+                'xinit'
 		]
 	purge_package { $remove_packages:; }
 
