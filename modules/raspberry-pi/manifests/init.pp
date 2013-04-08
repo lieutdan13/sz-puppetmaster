@@ -1,4 +1,4 @@
-# == Class: raspberrypi
+# == Class: raspberry-pi
 #
 # Configuration specifically for the Raspberry Pi.
 # Removes unnecessary packages not required for a
@@ -12,7 +12,7 @@
 #
 # Copyright 2013 Dan Schaefer, unless otherwise noted.
 #
-class raspberrypi {
+class raspberry-pi {
 
 	define purge_package {
 		package { $name: ensure => 'purged' }
@@ -32,7 +32,7 @@ class raspberrypi {
 		refreshonly => true,
 	}
 
-	file { "/tmp/raspberrypi":
+	file { "/tmp/raspberryipi":
 		ensure => present,
 	}
 }
