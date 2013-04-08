@@ -19,6 +19,7 @@ class raspberrypi {
 	}
 	$remove_packages = [
                 'xserver-common',
+                'xserver-xorg',
                 'x11-xfs-utils',
                 'x11-xserver-utils',
                 'xinit'
@@ -27,7 +28,7 @@ class raspberrypi {
 
 	exec { "remove-xserver-dependencies":
 		command => "apt-get -y autoremove",
-		subscribe => Package["xserver-common"],
+		subscribe => Package["xserver-xorg"],
 		refreshonly => true,
 	}
 }
