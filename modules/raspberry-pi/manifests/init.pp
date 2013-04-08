@@ -38,7 +38,7 @@ class raspberry-pi {
 
 	exec { "remove-xserver-dependencies":
 		command => "/usr/bin/apt-get -y autoremove",
-		subscribe => Package["xserver-xorg"],
+		subscribe => Package["python-tk"],
 		refreshonly => true,
 	}
 
