@@ -7,7 +7,7 @@ PUPPET_REPO='http://apt.puppetlabs.com/'
 DISTRIB_CODENAME=`awk -F= '/^DISTRIB_CODENAME/ { print $2 }' /etc/lsb-release`
 KEY_USER=`whoami`
 KEY_HOST=`hostname --short`
-
+MASTER_IP="`/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`"
 
 function install_dependencies() {
 	echo "Installing git"
@@ -22,6 +22,19 @@ function install_dependencies() {
 	if [ ${?} -ne 0 ]; then
 		echo "Something went wrong with installing python-software-properties."
 		exit 1
+	fi
+}
+
+function check_master_connection() {
+	ping -c 3 puppet &> /dev/null
+	if [ $? -ne 0 ]; then
+		echo "Adding a static /etc/hosts record for puppet"
+		echo -e "$MASTER_IP\tpuppet" | sudo tee --append  /etc/hosts
+		ping -c 3 puppet &> /dev/null
+		if [ $? -ne 0 ]; then
+			echo "Unable to reach the Puppet Master"
+			exit 1
+		fi
 	fi
 }
 
@@ -105,6 +118,7 @@ function install_puppetmaster() {
 }
 
 install_dependencies
+check_master_connection
 add_puppet_repository
 configure_git
 install_puppetmaster

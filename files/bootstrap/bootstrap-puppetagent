@@ -42,6 +42,7 @@ function check_hostname() {
 }
 
 function check_master_connection() {
+
 	ping -c 3 $MASTER_HOST_NAME &> /dev/null
 	if [ $? -ne 0 ]; then
 		echo "Adding a static /etc/hosts record for $MASTER_HOST_NAME"
