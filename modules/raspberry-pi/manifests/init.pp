@@ -18,11 +18,21 @@ class raspberry-pi {
 		package { $name: ensure => 'purged' }
 	}
 	$remove_packages = [
-                'xserver-common',
-                'xserver-xorg',
-                'x11-xfs-utils',
-                'x11-xserver-utils',
-                'xinit'
+		'alsa-utils',
+		'console-setup',
+		'lightdm',
+		'obconf',
+		'openbox',
+		'python-pygame',
+		'python-tk',
+		'python3-tk',
+		'xarchiver',
+		'xauth',
+		'xinit',
+		'xserver-common',
+		'xserver-xorg',
+		'x11-xfs-utils',
+		'x11-xserver-utils',
 		]
 	purge_package { $remove_packages:; }
 
