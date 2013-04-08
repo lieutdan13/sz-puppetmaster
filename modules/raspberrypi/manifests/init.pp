@@ -14,13 +14,16 @@
 #
 class raspberrypi {
 
+	define purge_package {
+		package { $name: ensure => 'purged' }
+	}
 	$remove_packages = [
                 'xserver-common',
                 'x11-xfs-utils',
                 'x11-xserver-utils',
                 'xinit''
 		]
-	package { $remove_packages: ensure => 'purged' }
+	purge_package { $remove_packages:; }
 
 	exec { "remove-xserver-dependencies"
 		command => "apt-get -y autoremove",
