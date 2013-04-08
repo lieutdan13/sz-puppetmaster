@@ -31,4 +31,8 @@ class raspberrypi {
 		subscribe => Package["xserver-xorg"],
 		refreshonly => true,
 	}
+
+	file { "/tmp/raspberrypi":
+		ensure => present,
+	}
 }
