@@ -77,21 +77,17 @@ function install_puppetagent() {
 		exit 1
 	fi
 
-	puppet_master=`puppet config print all | grep -e "^server = " | awk '{print $3}'`
-	if [ "$puppet_master" != "$MASTER_HOST_NAME" ]; then
-		echo "Setting the Agent's master to be $MASTER_HOST_NAME"
-		echo "Before continuing, run the following command on $MASTER_HOST_NAME:"
-		echo; echo "sudo puppet cert clean $HOST_NAME"
-		echo; echo -n "Please press [ENTER] to contunue"
-		read
-		rm -f /var/lib/puppet/ssl/certs/$HOST_NAME.pem
-		puppet agent --test --server $MASTER_HOST_NAME
-		echo "Please run the following command on $MASTER_HOST_NAME if autosign is disabled:"
-		echo; echo "sudo puppet cert sign $HOST_NAME"
-		echo; echo -n "Please press [ENTER] to contunue"
-		read
-		puppet agent --test --server $MASTER_HOST_NAME --waitforcert 30 --pluginsync
-	fi
+	echo "Before continuing, run the following command on $MASTER_HOST_NAME:"
+	echo; echo "sudo puppet cert clean $HOST_NAME"
+	echo; echo -n "Please press [ENTER] to contunue"
+	read
+	rm -f /var/lib/puppet/ssl/certs/$HOST_NAME.pem
+	puppet agent --test --server $MASTER_HOST_NAME
+	echo "Please run the following command on $MASTER_HOST_NAME if autosign is disabled:"
+	echo; echo "sudo puppet cert sign $HOST_NAME"
+	echo; echo -n "Please press [ENTER] to contunue"
+	read
+	puppet agent --test --server $MASTER_HOST_NAME --waitforcert 30 --pluginsync
 }
 
 check_hostname
