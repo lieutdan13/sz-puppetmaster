@@ -25,7 +25,7 @@ class raspberrypi {
 		]
 	purge_package { $remove_packages:; }
 
-	exec { "remove-xserver-dependencies"
+	exec { "remove-xserver-dependencies":
 		command => "apt-get -y autoremove",
 		subscribe => Package["xserver-common"],
 		refreshonly => true,
