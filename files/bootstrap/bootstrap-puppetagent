@@ -89,6 +89,10 @@ function install_puppetagent() {
 	echo; echo -n "Please press [ENTER] to contunue"
 	read
 	puppet agent --test --server $MASTER_HOST_NAME --waitforcert 30 --pluginsync
+
+	echo "To complete the bootstrap process,"
+	echo "a reboot is recommended or"
+	echo "eth0 will need to be restarted."
 }
 
 check_hostname
