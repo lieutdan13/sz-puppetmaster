@@ -55,4 +55,5 @@ node raspberrypi inherits puppetagent {
 		auto => ["eth0"]
 	}
 	include sz-dns::server
+	include raspberrypi
 }
