@@ -19,3 +19,6 @@
 [submodule "modules/git"]
 	path = modules/git
 	url = git@github.com:lieutdan13/puppet-git.git
+[submodule "modules/stdlib"]
+	path = modules/stdlib
+	url = git@github.com:lieutdan13/puppetlabs-stdlib.git
