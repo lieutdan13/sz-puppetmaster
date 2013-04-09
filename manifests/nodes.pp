@@ -56,4 +56,5 @@ node raspberrypi inherits puppetagent {
 	}
 	include sz-dns::server
 	include raspberry-pi
+	include weave::install
 }
