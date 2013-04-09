@@ -16,3 +16,6 @@
 [submodule "modules/weave"]
 	path = modules/weave
 	url = git@github.com:lieutdan13/puppet-weave.git
+[submodule "modules/git"]
+	path = modules/git
+	url = git@github.com:lieutdan13/puppet-git.git
