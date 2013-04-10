@@ -59,4 +59,9 @@ node raspberrypi inherits puppetagent {
 	class { "weave::install":
 		accept_tou => true
 	}
+	class { "weave::config":
+		config => {
+			"max_memory" => "256m",
+		}
+	}
 }
