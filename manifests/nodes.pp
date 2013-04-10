@@ -61,6 +61,8 @@ node raspberrypi inherits puppetagent {
 	}
 	class { "weave::config":
 		config => {
+			"registered_worker_id" => "lieutdan13",
+			"min_memory" => "256m",
 			"max_memory" => "256m",
 		}
 	}
