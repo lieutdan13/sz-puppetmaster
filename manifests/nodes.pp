@@ -37,17 +37,7 @@ node big-bang inherits default {
 
 	include puppetmaster
 	include sz-dns::client
-	class { "weave::install":
-		accept_tou => true
-	}
-	class { "weave::config":
-		config => {
-			"registered_worker_id" => "lieutdan13",
-			"min_memory" => "256m",
-			"max_memory" => "256m",
-			"weave_log"  => "/tmp/weave.${LOG_DATE}.log",
-		}
-	}
+	class { "weave::uninstall": }
 }
 
 node raspberrypi inherits puppetagent {
