@@ -67,4 +67,19 @@ node raspberrypi inherits puppetagent {
 			"weave_log"  => "/tmp/weave.\${LOG_DATE}.log",
 		}
 	}
+
+	file { "/mnt/lexar-usb":
+		ensure => "directory",
+		owner  => "root",
+		group  => "root",
+		mode   => 750,
+	}
+
+	mount { "/mnt/lexar-usb":
+		device  => "/dev/disk/by-uuid/9857-7817",
+		fstype  => "vfat",
+		ensure  => "mounted",
+		options => "defaults",
+		atboot  => "true",
+	}
 }
