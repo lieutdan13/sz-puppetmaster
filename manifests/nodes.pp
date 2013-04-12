@@ -82,4 +82,13 @@ node raspberrypi inherits puppetagent {
 		options => "defaults",
 		atboot  => "true",
 	}
+
+	package { "imapfilter": ensure => present }
+
+	cron { imapfilter:
+		command => "/usr/bin/imapfilter -c /mnt/lexar-usb/imapfilter.lua -l /tmp/imapfilter.log",
+		user    => root,
+		hour	=> "*",
+		minute  => "*/10"
+	}
 }
