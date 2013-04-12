@@ -32,4 +32,12 @@ class utility {
 		group   => root,
 		source  => "puppet:///modules/utility/etc_vim_vimrc.local"
 	}
+
+	file { "/etc/profile.d/aliases.sh":
+		ensure  => present,
+		mode    => 755,
+		owner   => root,
+		group   => root,
+		source  => "puppet:///modules/utility/etc_profile.d_aliases.sh"
+	}
 }
