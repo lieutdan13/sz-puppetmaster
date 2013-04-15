@@ -56,8 +56,12 @@ node raspberrypi inherits puppetagent {
 	}
 	include sz-dns::server
 	include raspberry-pi
+
+
+	#Weave
 	class { "weave::install":
-		accept_tou => true
+		accept_tou => true,
+		cron       => true,
 	}
 	class { "weave::config":
 		config => {
@@ -69,6 +73,8 @@ node raspberrypi inherits puppetagent {
 		}
 	}
 
+
+	#Imapfilter
 	file { "/mnt/lexar-usb":
 		ensure => "directory",
 		owner  => "root",
