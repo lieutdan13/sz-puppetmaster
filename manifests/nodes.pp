@@ -64,7 +64,8 @@ node raspberrypi inherits puppetagent {
 			"registered_worker_id" => "lieutdan13",
 			"min_memory" => "256m",
 			"max_memory" => "256m",
-			"weave_log"  => "/tmp/weave.\${LOG_DATE}.log",
+			"weave_log"  => "/tmp/weave.log",
+			"cron"       => "1",
 		}
 	}
 
@@ -72,7 +73,7 @@ node raspberrypi inherits puppetagent {
 		ensure => "directory",
 		owner  => "root",
 		group  => "root",
-		mode   => 750,
+		mode   => 755,
 	}
 
 	mount { "/mnt/lexar-usb":
