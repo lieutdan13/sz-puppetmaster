@@ -19,7 +19,7 @@ class sz-dns::server inherits dns::server {
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1.schaeferzone.net'],
-		serial      => 2013033100
+		serial      => 2013041600
 	}
 
 	dns::zone { 'schaeferzone.net':
