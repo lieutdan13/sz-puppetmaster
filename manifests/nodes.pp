@@ -99,6 +99,7 @@ node raspberrypi inherits puppetagent {
 		minute  => "*/10"
 	}
 
+
 	#Web/DB server
 	class { 'apache': }
 	class { 'apache::mod::php': }
@@ -131,5 +132,11 @@ node raspberrypi inherits puppetagent {
 		logroot         => '/var/log/apache2/www.marketmaps.co/',
 		serveradmin     => 'dan@schaeferzone.net',
 		serveraliases   => ['marketmaps.co'],
+	}
+
+	git::repo{ "www.marketmaps.co":
+		path    => "git@github.com:lieutdan13/MarketMaps.git",
+		source  => "/var/www/www.marketmaps.co/htdocs/",
+		update  => true,
 	}
 }
