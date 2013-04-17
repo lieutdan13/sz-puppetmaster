@@ -57,6 +57,11 @@ class sz-dns::server inherits dns::server {
 			zone => $sz_zone,
 			data => ['192.168.10.25'],
 			ptr  => true;
+
+		#MarketMaps
+		'@':
+			zone => $mm_zone,
+			data => ['192.168.10.10'];
 	}
 
 	# CNAME Records
@@ -85,6 +90,9 @@ class sz-dns::server inherits dns::server {
 		'dev':
 			zone => $mm_zone,
 			data => 'nebula.schaeferzone.net';
+		'www':
+			zone => $mm_zone,
+			data => 'raspberrypi.schaeferzone.net';
 	}
 
 	# MX Record

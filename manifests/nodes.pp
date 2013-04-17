@@ -105,4 +105,25 @@ node raspberrypi inherits puppetagent {
 	class { 'mysql': }
 	class { 'mysql::server': }
 	class { 'mysql::php': }
+
+	#MarketMaps.co
+	file { [ "/var/www/www.marketmaps.co",
+		 "/var/www/www.marketmaps.co/htdocs",]:
+		ensure => 'directory',
+		owner  => 'www-data',
+		group  => 'www-data',
+		mode   => 750,
+	}
+
+	file { "/mnt/lexar-usb/www.marketmaps.co": ensure => 'directory' }
+
+	apache::vhost { 'www.marketmaps.co':
+		priority        => '10',
+		vhost_name      => '192.168.10.10',
+		port            => '80',
+		docroot         => '/var/www/www.marketmaps.co/htdocs',
+		logroot         => '/var/log/apache2/www.marketmaps.co/',
+		serveradmin     => 'dan@schaeferzone.net',
+		serveraliases   => ['marketmaps.co'],
+	}
 }
