@@ -38,7 +38,8 @@ class sz-dns::server inherits dns::server {
 
 	# SchaeferZone - A Records
 	dns::record::a {
-		'@':
+		'@.schaeferzone.net':
+			host => '@',
 			zone => $sz_zone,
 			data => ['192.168.10.25'];
 		'big-bang':
@@ -62,7 +63,8 @@ class sz-dns::server inherits dns::server {
 
 	# MarketMaps - A Records
 	dns::record::a {
-		'@':
+		'@.marketmaps.co':
+			host => '@',
 			zone => $mm_zone,
 			data => ['192.168.10.10'];
 	}
@@ -85,7 +87,8 @@ class sz-dns::server inherits dns::server {
 		'smtp':
 			zone => $sz_zone,
 			data => 'mail02.logicpartners.com';
-		'www':
+		'www.schaeferzone.net':
+			host => 'www',
 			zone => $sz_zone,
 			data => 'eclipse.schaeferzone.net';
 	}
@@ -95,7 +98,8 @@ class sz-dns::server inherits dns::server {
 		'dev':
 			zone => $mm_zone,
 			data => 'nebula.schaeferzone.net';
-		'www':
+		'www.marketmaps.co':
+			host => 'www',
 			zone => $mm_zone,
 			data => 'raspberrypi.schaeferzone.net';
 	}
