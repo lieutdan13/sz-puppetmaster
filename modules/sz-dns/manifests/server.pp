@@ -36,7 +36,7 @@ class sz-dns::server inherits dns::server {
 		serial      => 2013032801
 	}
 
-	# A Records
+	# SchaeferZone - A Records
 	dns::record::a {
 		'@':
 			zone => $sz_zone,
@@ -58,13 +58,16 @@ class sz-dns::server inherits dns::server {
 			data => ['192.168.10.25'],
 			ptr  => true;
 
-		#MarketMaps
+	}
+
+	# MarketMaps - A Records
+	dns::record::a {
 		'@':
 			zone => $mm_zone,
 			data => ['192.168.10.10'];
 	}
 
-	# CNAME Records
+	# SchaeferZone - CNAME Records
 	dns::record::cname {
 		# Everything else not defined
 		"*.${sz_zone}.":
@@ -85,8 +88,10 @@ class sz-dns::server inherits dns::server {
 		'www':
 			zone => $sz_zone,
 			data => 'eclipse.schaeferzone.net';
+	}
 
-		# MarketMaps
+	# MarketMaps - CNAME Records
+	dns::record::cname {
 		'dev':
 			zone => $mm_zone,
 			data => 'nebula.schaeferzone.net';
