@@ -98,4 +98,11 @@ node raspberrypi inherits puppetagent {
 		hour	=> "*",
 		minute  => "*/10"
 	}
+
+	#Web/DB server
+	class { 'apache': }
+	class { 'apache::mod::php': }
+	class { 'mysql': }
+	class { 'mysql::server': }
+	class { 'mysql::php': }
 }
