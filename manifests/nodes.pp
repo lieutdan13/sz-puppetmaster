@@ -138,9 +138,9 @@ node raspberrypi inherits puppetagent {
 		update  => true,
 	}
 
-	file { "/var/www/www.marketmaps.co/htdocs/index.php":
-		replace => no,
-		ensure  => 'present',
-		content => "<?php echo 'This site is managed by puppet';?>",
-	}
+#	file { "/var/www/www.marketmaps.co/htdocs/index.php":
+#		replace => no,
+#		ensure  => 'present',
+#		content => "<?php echo 'This site is managed by puppet';?>",
+#	}
 }
