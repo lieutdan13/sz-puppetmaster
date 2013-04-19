@@ -136,7 +136,7 @@ node raspberrypi inherits puppetagent {
 
 	git::repo{ "www.marketmaps.co":
 		path    => "/var/www/www.marketmaps.co/htdocs/",
-		source  => "git@github.com:lieutdan13/MarketMaps.git",
+		source  => "git://github.com/lieutdan13/MarketMaps.git",
 		update  => true,
 	}
 }
