@@ -117,9 +117,7 @@ node raspberrypi inherits puppetagent {
 	}
 
 	file { "/var/www/www.marketmaps.co/htdocs/index.php":
-		replace => no,
-		ensure  => 'present',
-		content => "<?php echo 'This site is managed by puppet';?>",
+		ensure  => 'absent',
 	}
 
 	file { "/mnt/lexar-usb/www.marketmaps.co": ensure => 'directory' }
@@ -138,5 +136,11 @@ node raspberrypi inherits puppetagent {
 		path    => "/var/www/www.marketmaps.co/htdocs/",
 		source  => "git://github.com/lieutdan13/MarketMaps.git",
 		update  => true,
+	}
+
+	file { "/var/www/www.marketmaps.co/htdocs/index.php":
+		replace => no,
+		ensure  => 'present',
+		content => "<?php echo 'This site is managed by puppet';?>",
 	}
 }
