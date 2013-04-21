@@ -39,6 +39,7 @@ node big-bang inherits default {
 	include sz-dns::client
 
 	class { 'virtualbox::guest_additions':
+		ensure  => present,
 		version => '4.2.12',
 	}
 }
