@@ -31,3 +31,6 @@
 [submodule "modules/firewall"]
 	path = modules/firewall
 	url = git://github.com/puppetlabs/puppetlabs-firewall.git
+[submodule "modules/virtualbox"]
+	path = modules/virtualbox
+	url = git@github.com:lieutdan13/puppet-virtualbox_guest.git
