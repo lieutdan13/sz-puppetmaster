@@ -37,6 +37,10 @@ node big-bang inherits default {
 
 	include puppetmaster
 	include sz-dns::client
+
+	class { 'virtualbox::guest_additions':
+		ensure => sync,
+	}
 }
 
 node raspberrypi inherits puppetagent {
