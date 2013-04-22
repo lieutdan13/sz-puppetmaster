@@ -36,4 +36,4 @@
 	url = git@github.com:lieutdan13/puppet-virtualbox_guest.git
 [submodule "modules/www_marketmaps_co"]
 	path = modules/www_marketmaps_co
-	url = root@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-www.marketmaps.co.git
+	url = ssh://root@raspberrypi.schaeferzone.net/mnt/lexar-usb/puppet-www.marketmaps.co.git
