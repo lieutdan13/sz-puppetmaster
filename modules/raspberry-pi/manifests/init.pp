@@ -43,6 +43,6 @@ class raspberry-pi {
 	}
 
 	file { "/tmp/raspberryipi":
-		ensure => present,
+		ensure => absent,
 	}
 }

@@ -60,6 +60,38 @@ node raspberrypi inherits puppetagent {
 		auto => ["eth0"]
 	}
 	include sz-dns::server
+
+	#Mounted drives	
+	file { "/mnt/lexar-usb":
+		ensure => "directory",
+		owner  => "root",
+		group  => "root",
+		mode   => 755,
+	}
+
+	mount { "/mnt/lexar-usb":
+		device  => "/dev/disk/by-uuid/9857-7817",
+		fstype  => "vfat",
+		ensure  => "mounted",
+		options => "defaults",
+		atboot  => "true",
+	}
+	
+	file { "/mnt/WD2500YS":
+		ensure => "directory",
+		owner  => "root",
+		group  => "root",
+		mode   => 755,
+	}
+
+	mount { "/mnt/WD2500YS":
+		device  => "/dev/disk/by-uuid/AEF8D5ECF8D5B2B7",
+		fstype  => "vfat",
+		ensure  => "mounted",
+		options => "defaults",
+		atboot  => "true",
+	}
+
 	include raspberry-pi
 
 
@@ -80,20 +112,6 @@ node raspberrypi inherits puppetagent {
 
 
 	#Imapfilter
-	file { "/mnt/lexar-usb":
-		ensure => "directory",
-		owner  => "root",
-		group  => "root",
-		mode   => 755,
-	}
-
-	mount { "/mnt/lexar-usb":
-		device  => "/dev/disk/by-uuid/9857-7817",
-		fstype  => "vfat",
-		ensure  => "mounted",
-		options => "defaults",
-		atboot  => "true",
-	}
 
 	package { "imapfilter": ensure => present }
 
