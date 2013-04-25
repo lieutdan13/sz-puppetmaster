@@ -85,7 +85,7 @@ node raspberrypi inherits puppetagent {
 	}
 
 	mount { "/mnt/WD2500YS":
-		device  => "/dev/disk/by-uuid/AEF8D5ECF8D5B2B7",
+		device  => "/dev/disk/by-id/ata-WDC_WD2500YS-01SHB1_WD-WCANY4335837-part1",
 		fstype  => "vfat",
 		ensure  => "mounted",
 		options => "defaults",
