@@ -43,6 +43,10 @@ node big-bang inherits default {
 		version => '4.2.12',
 	}
 
+	group { 'devops':
+		gid    => 10001
+	}
+
 	user { 'devops':
 		ensure => 'present',
 		home   => '/home/devops',
