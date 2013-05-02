@@ -42,6 +42,15 @@ node big-bang inherits default {
 		ensure  => present,
 		version => '4.2.12',
 	}
+
+	user { 'devops':
+		ensure => 'present',
+		home   => '/home/devops',
+		uid    => 10001,
+		gid    => 10001,
+		shell  => '/bin/bash',
+		groups => ['adm','cdrom','sudo'], //dip, plugdev, lpadmin, sambashare
+	}
 }
 
 node raspberrypi inherits puppetagent {
