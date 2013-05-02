@@ -84,8 +84,8 @@ node raspberrypi inherits puppetagent {
 	#Mounted drives	
 	file { "/mnt/lexar-usb":
 		ensure => "directory",
-		owner  => "root",
-		group  => "root",
+		owner  => "devops",
+		group  => "devops",
 		mode   => 755,
 	}
 
@@ -93,7 +93,7 @@ node raspberrypi inherits puppetagent {
 		device  => "/dev/disk/by-uuid/9857-7817",
 		fstype  => "vfat",
 		ensure  => "mounted",
-		options => "defaults",
+		options => "defaults,user=devops,group=devops",
 		atboot  => "true",
 	}
 	
