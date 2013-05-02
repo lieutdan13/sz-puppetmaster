@@ -3,6 +3,26 @@ node default {
 	include utility
 	include puppetagent
 
+	group { 'devops':
+		gid    => 10001
+	}
+
+	user { 'devops':
+		ensure => 'present',
+		home   => '/home/devops',
+		uid    => 10001,
+		gid    => 10001,
+		shell  => '/bin/bash',
+		groups => ['adm','cdrom','sudo'], #dip, plugdev, lpadmin, sambashare
+	}
+
+	file { '/home/devops':
+		ensure  => directory,
+		recurse => true,
+		owner   => 'devops',
+		group   => 'devops',
+	}
+
 	class { "ntp":
 	        ensure     => running,
 	        servers    => [ 'time1.google.com', 'time2.google.com', 'time3.google.com', 'time4.google.com' ],
@@ -41,26 +61,6 @@ node big-bang inherits default {
 	class { 'virtualbox::guest_additions':
 		ensure  => present,
 		version => '4.2.12',
-	}
-
-	group { 'devops':
-		gid    => 10001
-	}
-
-	user { 'devops':
-		ensure => 'present',
-		home   => '/home/devops',
-		uid    => 10001,
-		gid    => 10001,
-		shell  => '/bin/bash',
-		groups => ['adm','cdrom','sudo'], #dip, plugdev, lpadmin, sambashare
-	}
-
-	file { '/home/devops':
-		ensure  => directory,
-		recurse => true,
-		owner   => 'devops',
-		group   => 'devops',
 	}
 }
 

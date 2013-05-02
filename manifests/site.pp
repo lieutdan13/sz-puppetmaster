@@ -2,13 +2,13 @@ $local_dns_ip = "192.168.10.10"
 
 class test_class {
 	file { "/tmp/puppet-agent-successfull":
-		ensure => present,
+		ensure => absent,
 		mode   => 644,
 		owner  => root,
 		group  => root
 	}
 	file { "/tmp/my_os_type":
-		ensure  => present,
+		ensure  => absent,
 		mode    => 644,
 		owner   => root,
 		group   => root,
