@@ -49,7 +49,7 @@ node big-bang inherits default {
 		uid    => 10001,
 		gid    => 10001,
 		shell  => '/bin/bash',
-		groups => ['adm','cdrom','sudo'], //dip, plugdev, lpadmin, sambashare
+		groups => ['adm','cdrom','sudo'], #dip, plugdev, lpadmin, sambashare
 	}
 }
 
