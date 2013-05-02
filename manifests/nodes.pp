@@ -55,6 +55,13 @@ node big-bang inherits default {
 		shell  => '/bin/bash',
 		groups => ['adm','cdrom','sudo'], #dip, plugdev, lpadmin, sambashare
 	}
+
+	file { '/home/devops':
+		ensure  => directory,
+		recurse => true,
+		owner   => 'devops',
+		group   => 'devops',
+	}
 }
 
 node raspberrypi inherits puppetagent {
