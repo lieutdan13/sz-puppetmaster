@@ -95,6 +95,7 @@ node raspberrypi inherits puppetagent {
 		ensure  => "mounted",
 		options => "defaults,user=devops,group=devops",
 		atboot  => "true",
+		require => File["/mnt/lexar-usb"],
 	}
 	
 	file { "/mnt/WD2500YS":
@@ -110,6 +111,7 @@ node raspberrypi inherits puppetagent {
 		ensure  => "mounted",
 		options => "defaults",
 		atboot  => "true",
+		require => File["/mnt/WD2500YS"],
 	}
 
 	include raspberry-pi
@@ -139,7 +141,8 @@ node raspberrypi inherits puppetagent {
 		command => "/usr/bin/imapfilter -c /mnt/lexar-usb/imapfilter.lua -l /tmp/imapfilter.log",
 		user    => root,
 		hour	=> "*",
-		minute  => "*/10"
+		minute  => "*/10",
+		require => Mount["/mnt/lexar-usb"],
 	}
 
 
@@ -157,9 +160,13 @@ node raspberrypi inherits puppetagent {
 		owner  => 'www-data',
 		group  => 'www-data',
 		mode   => 750,
+		require => Mount["/mnt/lexar-usb"],
 	}
 
-	file { "/mnt/lexar-usb/www.marketmaps.co": ensure => 'directory' }
+	file { "/mnt/lexar-usb/www.marketmaps.co":
+		ensure => 'directory',
+		require => Mount["/mnt/lexar-usb"],
+	}
 
 	apache::vhost { 'www.marketmaps.co':
 		priority        => '10',
