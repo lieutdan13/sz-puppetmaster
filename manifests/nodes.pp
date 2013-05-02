@@ -4,14 +4,14 @@ node default {
 	include puppetagent
 
 	group { 'devops':
-		gid    => 10001
+		gid    => $devops_uid
 	}
 
 	user { 'devops':
 		ensure => 'present',
 		home   => '/home/devops',
-		uid    => 10001,
-		gid    => 10001,
+		uid    => $devops_uid,
+		gid    => $devops_uid,
 		shell  => '/bin/bash',
 		groups => ['adm','cdrom','sudo'], #dip, plugdev, lpadmin, sambashare
 	}
@@ -93,7 +93,7 @@ node raspberrypi inherits puppetagent {
 		device  => "/dev/disk/by-uuid/9857-7817",
 		fstype  => "vfat",
 		ensure  => "mounted",
-		options => "defaults,user=devops,group=devops",
+		options => "defaults,uid=$devops_uid,gid=$devops_uid",
 		atboot  => "true",
 		require => File["/mnt/lexar-usb"],
 	}
