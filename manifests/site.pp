@@ -58,4 +58,5 @@ class test_class {
 	}
 }
 
+include sshauth
 import "nodes"
