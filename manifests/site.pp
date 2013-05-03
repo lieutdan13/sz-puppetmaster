@@ -1,6 +1,6 @@
 $local_dns_ip = "192.168.10.10"
 $devops_uid=10001
-$domain_name=schaeferzone.net
+$domain_name="schaeferzone.net"
 
 define sshuser {
 	@user { $title: }
