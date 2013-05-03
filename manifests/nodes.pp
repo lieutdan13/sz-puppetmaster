@@ -2,7 +2,6 @@ node default {
 	include test_class
 	include utility
 	include puppetagent
-	include devops
 
 	class { "ntp":
 	        ensure     => running,
@@ -37,6 +36,8 @@ node big-bang inherits default {
 	}
 
 	include puppetmaster
+	include ssh::auth::keymaster
+	include devops
 	include sz-dns::client
 
 	class { 'virtualbox::guest_additions':
@@ -60,6 +61,7 @@ node raspberrypi inherits puppetagent {
 		},
 		auto => ["eth0"]
 	}
+	include devops
 	include sz-dns::server
 
 	#Mounted drives	
