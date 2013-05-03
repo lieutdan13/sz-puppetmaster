@@ -19,7 +19,7 @@ class devops {
 		group   => 'devops',
 	}
 
-	include ssh::auth
+	include sshauth
 	sshuser { "devops": } # Generate the key
 	sshclientuser { "devops": } # Install the key on the node
 	sshserveruser { "devops": } # Authorize the key to access the node
