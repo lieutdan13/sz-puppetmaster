@@ -2,6 +2,7 @@ $local_dns_ip = "192.168.10.10"
 $devops_uid=10001
 $domain_name="schaeferzone.net"
 
+include sshauth
 define sshuser {
 	@user { $title: }
 	@file { "/home/${title}/.ssh":
@@ -58,5 +59,4 @@ class test_class {
 	}
 }
 
-include sshauth
 import "nodes"
