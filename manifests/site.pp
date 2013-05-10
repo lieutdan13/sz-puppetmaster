@@ -13,7 +13,7 @@ define sshuser (
 ) {
 	@user { $title:
 		ensure => $ensure,
-		home   => $home
+		home   => $home,
 		uid    => $uid,
 		gid    => $gid,
 		shell  => $shell,
