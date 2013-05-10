@@ -3,9 +3,29 @@ $devops_uid=10001
 $domain_name="schaeferzone.net"
 
 include sshauth
-define sshuser {
-	@user { $title: }
-	@file { "/home/${title}/.ssh":
+define sshuser (
+	$ensure = "present",
+	$home   = "/home/${title}",
+	$uid    = undef,
+	$gid    = undef,
+	$shell  = '/bin/bash',
+	$groups = undef,
+) {
+	@user { $title:
+		ensure => $ensure,
+		home   => $home
+		uid    => $uid,
+		gid    => $gid,
+		shell  => $shell,
+		groups => $groups,
+	}
+	@file { $home:
+		ensure  => directory,
+		recurse => true,
+		owner   => $title,
+		group   => $title,
+	}
+	@file { "${home}/.ssh":
 		ensure => "directory",
 		mode   => 600,
 		owner  => $title,
@@ -19,9 +39,11 @@ define sshuser {
 	}
 }
 
-define sshclientuser {
+define sshclientuser (
+	$home   = "/home/${title}",
+) {
 	realize User[$title]
-	realize File["/home/${title}/.ssh"]
+	realize File["${home}/.ssh"]
 	sshauth::client { "${title}@${domain_name}":
 		filename => "${title}@${domain_name}",
 		user     => $title,
@@ -29,8 +51,11 @@ define sshclientuser {
 	}
 }
 
-define sshserveruser ($ensure = "present") {
-	realize File["/home/${title}/.ssh"]
+define sshserveruser (
+	$ensure = "present",
+	$home   = "/home/${title}",
+) {
+	realize File["${home}/.ssh"]
 	User <| title == $title |> { ensure => $ensure }
 	sshauth::server { "${title}@${domain_name}":
 		ensure   => $ensure,
