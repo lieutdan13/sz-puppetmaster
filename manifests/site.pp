@@ -1,6 +1,7 @@
 $local_dns_ip = "192.168.10.10"
 $devops_uid=10001
 $domain_name="schaeferzone.net"
+$ssh_domain_name="schaeferzone_net"
 
 include sshauth
 define sshuser (
@@ -31,9 +32,9 @@ define sshuser (
 		owner  => $title,
 		group  => $title,
 	}
-	sshauth::key { "${title}_${domain_name}":
+	sshauth::key { "${title}_${ssh_domain_name}":
 		user     => $title,
-		filename => "${title}_${domain_name}",
+		filename => "${title}_${ssh_domain_name}",
 	}
 }
 
@@ -43,9 +44,9 @@ define sshclientuser (
 ) {
 	realize User[$title]
 	realize File["${home}/.ssh"]
-	sshauth::client { "${title}_${domain_name}":
+	sshauth::client { "${title}_${ssh_domain_name}":
 		ensure   => $ensure,
-		filename => "${title}_${domain_name}",
+		filename => "${title}_${ssh_domain_name}",
 		user     => $title,
 	}
 }
@@ -56,7 +57,7 @@ define sshserveruser (
 ) {
 	realize File["${home}/.ssh"]
 	User <| title == $title |> { ensure => $ensure }
-	sshauth::server { "${title}_${domain_name}":
+	sshauth::server { "${title}_${ssh_domain_name}":
 		ensure   => $ensure,
 		user     => $title,
 	}
