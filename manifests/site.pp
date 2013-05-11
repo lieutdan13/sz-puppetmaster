@@ -45,7 +45,6 @@ define sshclientuser (
 	sshauth::client { "${title}_${domain_name}":
 		filename => "${title}_${domain_name}",
 		user     => $title,
-		group    => $title,
 	}
 }
 
@@ -58,7 +57,6 @@ define sshserveruser (
 	sshauth::server { "${title}_${domain_name}":
 		ensure   => $ensure,
 		user     => $title,
-		group    => $title,
 	}
 }
 
