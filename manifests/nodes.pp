@@ -38,6 +38,15 @@ node big-bang inherits default {
 	include puppetmaster
 	include sshauth::keymaster
 	include devops
+	sshauth::server { "devops_schaeferzone.net":
+		ensure   => present,
+		user     => "devops,
+	}
+	sshauth::client { "devops_schaeferzone.net":
+		ensure   => present,
+		filename => "devops_schaeferzone.net",
+		user     => "devops",
+	}
 	include sz-dns::client
 
 	class { 'virtualbox::guest_additions':
