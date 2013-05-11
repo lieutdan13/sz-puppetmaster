@@ -33,7 +33,7 @@ define sshuser (
 		group  => $title,
 	}
 	sshauth::key { "${title}_${ssh_domain_name}":
-		user     => $title,
+		user     => "$title",
 		filename => "${title}_${ssh_domain_name}",
 	}
 }
@@ -45,9 +45,9 @@ define sshclientuser (
 	realize User[$title]
 	realize File["${home}/.ssh"]
 	sshauth::client { "${title}_${ssh_domain_name}":
-		ensure   => $ensure,
+		ensure   => "$ensure",
 		filename => "${title}_${ssh_domain_name}",
-		user     => $title,
+		user     => "$title",
 	}
 }
 
@@ -58,8 +58,8 @@ define sshserveruser (
 	realize File["${home}/.ssh"]
 	User <| title == $title |> { ensure => $ensure }
 	sshauth::server { "${title}_${ssh_domain_name}":
-		ensure   => $ensure,
-		user     => $title,
+		ensure   => "$ensure",
+		user     => "$title",
 	}
 }
 
