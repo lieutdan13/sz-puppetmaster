@@ -38,11 +38,13 @@ define sshuser (
 }
 
 define sshclientuser (
+	$ensure = "present",
 	$home   = "/home/${title}",
 ) {
 	realize User[$title]
 	realize File["${home}/.ssh"]
 	sshauth::client { "${title}_${domain_name}":
+		ensure   => $ensure,
 		filename => "${title}_${domain_name}",
 		user     => $title,
 	}
