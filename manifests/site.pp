@@ -32,10 +32,10 @@ define sshuser (
 		owner  => $title,
 		group  => $title,
 	}
-	sshauth::key { "${title}_${ssh_domain_name}":
-		user     => "$title",
-		filename => "${title}_${ssh_domain_name}",
-	}
+#	sshauth::key { "${title}_${ssh_domain_name}":
+#		user     => "$title",
+#		filename => "${title}_${ssh_domain_name}",
+#	}
 }
 
 define sshclientuser (

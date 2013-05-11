@@ -36,8 +36,8 @@ node big-bang inherits default {
 	}
 
 	include puppetmaster
-	include devops
 	include sshauth::keymaster
+	include devops::key
 	sshauth::server { "devops_schaeferzone_net":
 		ensure   => "present",
 		user     => "devops",
