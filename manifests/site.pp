@@ -4,6 +4,7 @@ $domain_name="schaeferzone.net"
 $ssh_domain_name="schaeferzone_net"
 
 include sshauth
+include devops::key
 define sshuser (
 	$ensure = "present",
 	$home   = "/home/${title}",
