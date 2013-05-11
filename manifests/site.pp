@@ -32,7 +32,6 @@ define sshuser (
 		group  => $title,
 	}
 	sshauth::key { "${title}@${domain_name}":
-		managed  => true,
 		user     => $title,
 		group    => $title,
 		filename => "${title}@${domain_name}",
