@@ -40,7 +40,7 @@ node big-bang inherits default {
 	include devops
 	sshauth::server { "devops_schaeferzone_net":
 		ensure   => "present",
-		user     => "devops,
+		user     => "devops",
 	}
 	sshauth::client { "devops_schaeferzone_net":
 		ensure   => "present",
