@@ -39,11 +39,11 @@ node big-bang inherits default {
 	include sshauth::keymaster
 	include devops
 	sshauth::server { "devops_schaeferzone_net":
-		ensure   => present,
+		ensure   => "present",
 		user     => "devops,
 	}
 	sshauth::client { "devops_schaeferzone_net":
-		ensure   => present,
+		ensure   => "present",
 		filename => "devops_schaeferzone_net",
 		user     => "devops",
 	}
