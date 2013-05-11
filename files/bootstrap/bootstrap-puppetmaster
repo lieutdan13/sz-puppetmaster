@@ -23,6 +23,14 @@ function install_dependencies() {
 		echo "Something went wrong with installing python-software-properties."
 		exit 1
 	fi
+
+	echo "Installing libactiverecord-ruby libsqlite3-ruby sqlite3"
+	sudo apt-get -y install libactiverecord-ruby libsqlite3-ruby sqlite3 > /dev/null
+	if [ ${?} -ne 0 ]; then
+		echo "Something went wrong with installing libactiverecord-ruby libsqlite3-ruby sqlite3."
+		exit 1
+	fi
+
 }
 
 function check_master_connection() {
