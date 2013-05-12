@@ -61,7 +61,7 @@ node raspberrypi inherits puppetagent {
 		},
 		auto => ["eth0"]
 	}
-	include devops
+	include devops::client
 	include sz-dns::server
 
 	#Mounted drives	
