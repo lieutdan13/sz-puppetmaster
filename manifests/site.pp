@@ -1,10 +1,9 @@
 $local_dns_ip = "192.168.10.10"
 $devops_uid=10001
 $domain_name="schaeferzone.net"
-$ssh_domain_name="schaeferzone_net"
+$ssh_domain_name="schaeferzone.net"
 
 include sshauth
-include devops::key
 define sshuser (
 	$ensure = "present",
 	$home   = "/home/${title}",
@@ -33,10 +32,6 @@ define sshuser (
 		owner  => $title,
 		group  => $title,
 	}
-#	sshauth::key { "${title}_${ssh_domain_name}":
-#		user     => "$title",
-#		filename => "${title}_${ssh_domain_name}",
-#	}
 }
 
 define sshclientuser (

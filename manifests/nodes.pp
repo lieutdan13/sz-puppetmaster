@@ -37,6 +37,7 @@ node big-bang inherits default {
 
 	include puppetmaster
 	include sshauth::keymaster
+	include devops::key
 	include devops::client
 	include sz-dns::client
 
