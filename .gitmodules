@@ -39,4 +39,4 @@
 	url = ssh://root@raspberrypi.schaeferzone.net/mnt/lexar-usb/puppet-www.marketmaps.co.git
 [submodule "modules/sshauth"]
 	path = modules/sshauth
-	url = git://github.com/lieutdan13/puppet-sshauth.git
+	url = git@github.com:lieutdan13/puppet-sshauth.git
