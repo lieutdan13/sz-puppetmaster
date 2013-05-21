@@ -40,3 +40,6 @@
 [submodule "modules/www_marketmaps_co"]
 	path = modules/www_marketmaps_co
 	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-www.marketmaps.co.git
+[submodule "modules/sz-misc"]
+	path = modules/sz-misc
+	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-sz-misc.git

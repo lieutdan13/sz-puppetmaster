@@ -150,16 +150,7 @@ node raspberrypi inherits puppetagent {
 
 
 	#Imapfilter
-
-	package { "imapfilter": ensure => present }
-
-	cron { imapfilter:
-		command => "/usr/bin/imapfilter -c /mnt/lexar-usb/imapfilter.lua -l /tmp/imapfilter.log",
-		user    => root,
-		hour	=> "*",
-		minute  => "*/10",
-		require => Mount["/mnt/lexar-usb"],
-	}
+	class { 'sz-misc::imapfilter': }
 
 
 	#Web/DB server
@@ -169,8 +160,8 @@ node raspberrypi inherits puppetagent {
 	class { 'mysql::server': }
 	class { 'mysql::php': }
 
-	#MarketMaps.co
 
+	#MarketMaps.co
 	file { "/mnt/lexar-usb/puppet-www.marketmaps.co":
 		ensure => 'directory',
 		require => Mount["/mnt/lexar-usb"],
