@@ -39,6 +39,17 @@ node big-bang inherits default {
 	include sshauth::keymaster
 	include devops::key
 	include devops::client
+
+	sshauth::user::config { "git@github.com for devops":
+		user        => "devops",
+		ssh_aliases => {
+			"github.com" => {
+				"hostname" => "github.com",
+				"user"     => "git",
+				"file"     => "~/.ssh/devops@big-bang"
+			},
+		},
+	}
 	include sz-dns::client
 
 	class { 'virtualbox::guest_additions':
