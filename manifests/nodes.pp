@@ -48,7 +48,7 @@ node big-bang inherits default {
 				"user"     => "git",
 				"file"     => "~/.ssh/devops@big-bang"
 			},
-			"raspberrypi.schaeferzone.net" => {
+			"raspberrypi.schaeferzone.net raspberrypi" => {
 				"hostname" => "raspberrypi.schaeferzone.net",
 				"user"     => "devops",
 				"file"     => "~/.ssh/devops@schaeferzone.net"
