@@ -40,13 +40,18 @@ node big-bang inherits default {
 	include devops::key
 	include devops::client
 
-	sshauth::user::config { "git@github.com for devops":
+	sshauth::user::config { "devops":
 		user        => "devops",
 		ssh_aliases => {
 			"github.com" => {
 				"hostname" => "github.com",
 				"user"     => "git",
 				"file"     => "~/.ssh/devops@big-bang"
+			},
+			"raspberrypi.schaeferzone.net" => {
+				"hostname" => "raspberrypi.schaeferzone.net",
+				"user"     => "devops",
+				"file"     => "~/.ssh/devops@schaeferzone.net"
 			},
 		},
 	}
