@@ -154,33 +154,10 @@ node raspberrypi inherits puppetagent {
 	class { 'mysql::php': }
 
 	#MarketMaps.co
-	file { [ "/var/www/www.marketmaps.co",
-		 "/var/www/www.marketmaps.co/htdocs",]:
-		ensure => 'directory',
-		owner  => 'www-data',
-		group  => 'www-data',
-		mode   => 750,
-		require => Mount["/mnt/lexar-usb"],
-	}
 
-	file { "/mnt/lexar-usb/www.marketmaps.co":
+	file { "/mnt/lexar-usb/puppet-www.marketmaps.co":
 		ensure => 'directory',
 		require => Mount["/mnt/lexar-usb"],
 	}
-
-	apache::vhost { 'www.marketmaps.co':
-		priority        => '10',
-		vhost_name      => '192.168.10.10',
-		port            => '80',
-		docroot         => '/var/www/www.marketmaps.co/htdocs',
-		logroot         => '/var/log/apache2/www.marketmaps.co/',
-		serveradmin     => 'dan@schaeferzone.net',
-		serveraliases   => ['marketmaps.co'],
-	}
-
-	git::repo{ "www.marketmaps.co":
-		path    => "/var/www/www.marketmaps.co/htdocs/",
-		source  => "git://github.com/lieutdan13/MarketMaps.git",
-		update  => true,
-	}
+	include www_marketmaps_co
 }
