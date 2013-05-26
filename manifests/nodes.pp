@@ -154,6 +154,7 @@ node raspberrypi inherits puppetagent {
 
 
 	#Web/DB server
+	Package { 'php5': ensure => present, }
 	class { 'apache': }
 	class { 'apache::mod::php': }
 	class { 'mysql': }
