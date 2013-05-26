@@ -9,9 +9,15 @@ class utility {
 		source  => "puppet:///modules/utility/usr_local_bin_randomSleep"
 	}
 
-	package { "tree": ensure => 'latest' }
-	package { "vim": ensure => 'latest' }
-	package { "vim-tiny": ensure => 'latest' }
+	$latest_pkgs = [
+		"apt",
+		"apt-utils",
+		"sudo",
+		"tree",
+		"vim",
+		"vim-tiny",
+	]
+	package { $latest_pkgs: ensure => 'latest' }
 
 	file { "/etc/vim/vimrc.local":
 		ensure  => present,
