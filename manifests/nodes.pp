@@ -10,13 +10,9 @@ node default {
 	}
 }
 
+#This only applies to non-masters
 node puppetagent inherits default {
-	host { "puppet":
-		comment    => "Just in case DNS is down, we want to know how to get to the Master",
-		ensure     => present,
-		ip         => '192.168.10.5',
-		name       => 'puppet',
-	}
+	class { 'puppetagent::agent_only': }
 }
 
 node big-bang inherits default {
@@ -155,8 +151,18 @@ node raspberrypi inherits puppetagent {
 
 	#Web/DB server
 	package { 'php5': ensure => installed, }
-	class { 'apache': }
-	class { 'apache::mod::php': }
+	class { 'apache':
+		mpm_module => 'prefork',
+	}
+	apache::mod { 'rewrite': }
+	apache::mod { 'php5':
+		lib => 'libphp5.so'
+	}
+	file { 'php5.conf':
+		ensure  => file,
+		path    => "${apache::mod_dir}/php5.conf",
+		content => template('apache/mod/php.conf.erb'),
+	}
 	class { 'mysql': }
 	class { 'mysql::server': }
 	class { 'mysql::php': }
