@@ -12,6 +12,8 @@ class utility {
 	$latest_pkgs = [
 		"apt",
 		"apt-utils",
+		"git",
+		"git-svn",
 		"sudo",
 		"tree",
 		"vim",
