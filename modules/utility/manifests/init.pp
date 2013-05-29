@@ -11,6 +11,7 @@ class utility {
 
 	$latest_pkgs = [
 		"apt",
+		"apt-show-versions",
 		"apt-utils",
 		"sudo",
 		"tree",
@@ -20,8 +21,9 @@ class utility {
 	package { $latest_pkgs: ensure => 'latest' }
 
 	class { "git":
-		svn     => true,
+		svn     => "latest",
 		gui     => false,
+		ensure  => "latest",
 	}
 
 	file { "/etc/vim/vimrc.local":
