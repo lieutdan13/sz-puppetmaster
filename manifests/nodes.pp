@@ -1,3 +1,4 @@
+#node.pp
 node default {
 	include test_class
 	include utility
