@@ -43,3 +43,6 @@
 [submodule "modules/sz-misc"]
 	path = modules/sz-misc
 	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-sz-misc.git
+[submodule "modules/schaeferzone_net"]
+	path = modules/schaeferzone_net
+	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-schaeferzone_net.git
