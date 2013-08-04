@@ -177,7 +177,10 @@ node raspberrypi inherits puppetagent {
 	include www_marketmaps_co
 
 	#MySQL Backups
-	file { '/mnt/lexar-usb/Backups/MySQL':
+	file { [
+		'/mnt/lexar-usb/Backups',
+		'/mnt/lexar-usb/Backups/MySQL',
+		]:
 		ensure  => directory,
 		recurse => true,
 		require => Mount["/mnt/lexar-usb"],
