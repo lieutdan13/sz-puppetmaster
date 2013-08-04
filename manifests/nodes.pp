@@ -131,10 +131,10 @@ node raspberrypi inherits puppetagent {
 
 
 	#Weave
-	class { "weave::install":
-		accept_tou => true,
-		cron       => true,
-	}
+#	class { "weave::install":
+#		accept_tou => true,
+#		cron       => true,
+#	}
 	class { "weave::config":
 		config => {
 			"registered_worker_id" => "lieutdan13",
