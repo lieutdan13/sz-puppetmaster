@@ -75,6 +75,9 @@ class sz-dns::server inherits dns::server {
 		"*.${sz_zone}.":
 			zone => $sz_zone,
 			data => 'eclipse.schaeferzone.net';
+		'cars':
+			zone => $sz_zone,
+			data => 'raspberrypi.schaeferzone.net';
 		'imap':
 			zone => $sz_zone,
 			data => 'mail02.logicpartners.com';
