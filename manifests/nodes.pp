@@ -162,7 +162,7 @@ node raspberrypi inherits puppetagent {
 	file { 'php5.conf':
 		ensure  => file,
 		path    => "${apache::mod_dir}/php5.conf",
-		content => template('apache/mod/php.conf.erb'),
+		content => template('apache/mod/php5.conf.erb'),
 	}
 	class { 'mysql': }
 	class { 'mysql::server': }
