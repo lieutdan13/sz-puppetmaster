@@ -179,6 +179,7 @@ node raspberrypi inherits puppetagent {
 	#SchaeferZone.net Sites
 	include schaeferzone_net::site::cars
 	include schaeferzone_net::site::favorites
+	include schaeferzone_net::site::portfolio
 
 	#MySQL Backups
 	file { [
