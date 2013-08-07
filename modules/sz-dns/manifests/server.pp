@@ -90,6 +90,9 @@ class sz-dns::server inherits dns::server {
 		'portfolio':
 			zone => $sz_zone,
 			data => 'raspberrypi.schaeferzone.net';
+		'sandbox':
+			zone => $sz_zone,
+			data => 'raspberrypi.schaeferzone.net';
 		'puppet':
 			zone => $sz_zone,
 			data => 'big-bang.schaeferzone.net';
