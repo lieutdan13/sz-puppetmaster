@@ -26,7 +26,7 @@ class sz-dns::server inherits dns::server {
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1'],
-		serial      => 2013080600
+		serial      => 2013080601
 	}
 
 	dns::zone { '10.168.192.IN-ADDR.ARPA':
@@ -87,6 +87,9 @@ class sz-dns::server inherits dns::server {
 		'mail':
 			zone => $sz_zone,
 			data => 'mail02.logicpartners.com';
+		'portfolio':
+			zone => $sz_zone,
+			data => 'raspberrypi.schaeferzone.net';
 		'puppet':
 			zone => $sz_zone,
 			data => 'big-bang.schaeferzone.net';
