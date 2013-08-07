@@ -170,10 +170,6 @@ node raspberrypi inherits puppetagent {
 
 
 	#MarketMaps.co
-	file { "/mnt/lexar-usb/puppet-www.marketmaps.co":
-		ensure => 'directory',
-		require => Mount["/mnt/lexar-usb"],
-	}
 	include www_marketmaps_co
 
 	#SchaeferZone.net Sites
