@@ -170,9 +170,7 @@ node raspberrypi inherits puppetagent {
 		content => template('apache/mod/php5.conf.erb'),
 	}
 	class { 'mysql': }
-	class { 'mysql::server': }
-	class { 'mysql::php': }
-
+	php::module { 'mysql': }
 
 	#MarketMaps.co
 	include www_marketmaps_co
