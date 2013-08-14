@@ -52,3 +52,6 @@
 [submodule "modules/worryfreeincome"]
 	path = modules/worryfreeincome
 	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-worryfreeincome.git
+[submodule "modules/php"]
+	path = modules/php
+	url = https://github.com/lieutdan13/puppet-php.git
