@@ -179,7 +179,7 @@ node raspberrypi inherits puppetagent {
 	include schaeferzone_net::site::sandbox
 
 	#WorryfreeIncome
-#	include worryfreeincome::www
+	include worryfreeincome::www
 
 	#MySQL Backups
 	file { [
