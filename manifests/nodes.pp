@@ -153,13 +153,9 @@ node raspberrypi inherits puppetagent {
 	#Web/DB server
 	class { 'php': }
 	php::module { 'gd': }
-	class { 'apache':
-		mpm_module => 'prefork',
-	}
-	apache::mod { 'rewrite': }
-	apache::mod { 'php5':
-		lib => 'libphp5.so'
-	}
+	class { 'apache': }
+	apache::module { 'rewrite': }
+	apache::module { 'php5': }
 	file { 'php5.conf':
 		ensure  => file,
 		path    => "${apache::mod_dir}/php5.conf",
