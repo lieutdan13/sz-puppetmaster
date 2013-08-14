@@ -153,7 +153,6 @@ node raspberrypi inherits puppetagent {
 	#Web/DB server
 	class { 'php': }
 	php::module { 'gd': }
-	php::module { 'mysql': }
 	class { 'apache':
 		mpm_module => 'prefork',
 	}
