@@ -156,11 +156,6 @@ node raspberrypi inherits puppetagent {
 	class { 'apache': }
 	apache::module { 'rewrite': }
 	apache::module { 'php5': }
-	file { 'php5.conf':
-		ensure  => file,
-		path    => "${apache::mod_dir}/php5.conf",
-		content => template('apache/mod/php5.conf.erb'),
-	}
 	class { 'mysql': }
 
 	#MarketMaps.co
