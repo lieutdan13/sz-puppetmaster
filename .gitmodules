@@ -46,3 +46,6 @@
 [submodule "modules/schaeferzone_net"]
 	path = modules/schaeferzone_net
 	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-schaeferzone_net.git
+[submodule "modules/wordpress"]
+	path = modules/wordpress
+	url = https://github.com/lieutdan13/puppet-wordpress.git
