@@ -162,14 +162,14 @@ node raspberrypi inherits puppetagent {
 	include www_marketmaps_co
 
 	#SchaeferZone.net Sites
-	include schaeferzone_net::site::cars
-	include schaeferzone_net::site::eternallands
-	include schaeferzone_net::site::favorites
-	include schaeferzone_net::site::portfolio
-	include schaeferzone_net::site::sandbox
+#	include schaeferzone_net::site::cars
+#	include schaeferzone_net::site::eternallands
+#	include schaeferzone_net::site::favorites
+#	include schaeferzone_net::site::portfolio
+#	include schaeferzone_net::site::sandbox
 
 	#WorryfreeIncome
-	include worryfreeincome::www
+#	include worryfreeincome::www
 
 	#MySQL Backups
 	file { [
