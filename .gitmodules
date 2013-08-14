@@ -52,3 +52,6 @@
 [submodule "modules/php"]
 	path = modules/php
 	url = https://github.com/lieutdan13/puppet-php.git
+[submodule "modules/mysql"]
+	path = modules/mysql
+	url = https://github.com/lieutdan13/puppet-mysql.git
