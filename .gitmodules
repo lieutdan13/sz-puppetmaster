@@ -49,3 +49,6 @@
 [submodule "modules/wordpress"]
 	path = modules/wordpress
 	url = https://github.com/lieutdan13/puppet-wordpress.git
+[submodule "modules/worryfreeincome"]
+	path = modules/worryfreeincome
+	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-worryfreeincome.git
