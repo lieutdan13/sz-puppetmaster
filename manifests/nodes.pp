@@ -151,12 +151,9 @@ node raspberrypi inherits puppetagent {
 
 
 	#Web/DB server
-	package { [
-		'php5',
-		'php5-gd',
-		]:
-		ensure => installed,
-	}
+	class { 'php': }
+	php::module { 'gd': }
+	php::module { 'mysql': }
 	class { 'apache':
 		mpm_module => 'prefork',
 	}
@@ -170,20 +167,19 @@ node raspberrypi inherits puppetagent {
 		content => template('apache/mod/php5.conf.erb'),
 	}
 	class { 'mysql': }
-	php::module { 'mysql': }
 
 	#MarketMaps.co
 	include www_marketmaps_co
 
 	#SchaeferZone.net Sites
-	include schaeferzone_net::site::cars
-	include schaeferzone_net::site::eternallands
-	include schaeferzone_net::site::favorites
-	include schaeferzone_net::site::portfolio
-	include schaeferzone_net::site::sandbox
+#	include schaeferzone_net::site::cars
+#	include schaeferzone_net::site::eternallands
+#	include schaeferzone_net::site::favorites
+#	include schaeferzone_net::site::portfolio
+#	include schaeferzone_net::site::sandbox
 
 	#WorryfreeIncome
-	include worryfreeincome::www
+#	include worryfreeincome::www
 
 	#MySQL Backups
 	file { [
