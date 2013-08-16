@@ -15,6 +15,14 @@ class sz-dns::server inherits dns::server {
 		source => "puppet:///modules/sz-dns/named.conf.options",
         }
 
+	dns::zone { '10.168.192.IN-ADDR.ARPA':
+		soa         => 'ns1.schaeferzone.net',
+		soa_email   => 'dan.schaeferzone.net',
+		nameservers => ['ns1'],
+		serial      => 2013032801
+	}
+
+	# MarketMaps - Zone
 	dns::zone { 'marketmaps.co':
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
@@ -22,18 +30,31 @@ class sz-dns::server inherits dns::server {
 		serial      => 2013041600
 	}
 
+	# MarketMaps - A Records
+	dns::record::a {
+		'@.marketmaps.co':
+			host => '@',
+			zone => $mm_zone,
+			data => ['192.168.10.10'];
+	}
+
+	# MarketMaps - CNAME Records
+	dns::record::cname {
+		'dev':
+			zone => $mm_zone,
+			data => 'nebula.schaeferzone.net';
+		'www.marketmaps.co':
+			host => 'www',
+			zone => $mm_zone,
+			data => 'raspberrypi.schaeferzone.net';
+	}
+
+	# SchaeferZone - Zone
 	dns::zone { 'schaeferzone.net':
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1'],
 		serial      => 2013080700
-	}
-
-	dns::zone { '10.168.192.IN-ADDR.ARPA':
-		soa         => 'ns1.schaeferzone.net',
-		soa_email   => 'dan.schaeferzone.net',
-		nameservers => ['ns1'],
-		serial      => 2013032801
 	}
 
 	# SchaeferZone - A Records
@@ -59,14 +80,6 @@ class sz-dns::server inherits dns::server {
 			data => ['192.168.10.25'],
 			ptr  => true;
 
-	}
-
-	# MarketMaps - A Records
-	dns::record::a {
-		'@.marketmaps.co':
-			host => '@',
-			zone => $mm_zone,
-			data => ['192.168.10.10'];
 	}
 
 	# SchaeferZone - CNAME Records
@@ -108,23 +121,36 @@ class sz-dns::server inherits dns::server {
 			data => 'eclipse.schaeferzone.net';
 	}
 
-	# MarketMaps - CNAME Records
-	dns::record::cname {
-		'dev':
-			zone => $mm_zone,
-			data => 'nebula.schaeferzone.net';
-		'www.marketmaps.co':
-			host => 'www',
-			zone => $mm_zone,
-			data => 'raspberrypi.schaeferzone.net';
-	}
-
-	# MX Record
+	# SchaeferZone - MX Records
 	dns::record::mx {
 		"mx,0,${sz_zone}":
 			zone => $sz_zone,
 			host => '@',
 			preference => 0,
 			data => 'mail02.logicpartners.com';
+	}
+
+	# WorryFreeIncome - Zone
+	dns::zone { 'worryfreeincome.info':
+		soa         => 'ns1.schaeferzone.net',
+		soa_email   => 'dan.schaeferzone.net',
+		nameservers => ['ns1.schaeferzone.net'],
+		serial      => 2013081500
+	}
+
+	# WorryFreeIncome - A Records
+	dns::record::a {
+		'@.worryfreeincome.info':
+			host => '@',
+			zone => 'worryfreeincome.info',
+			data => ['192.168.10.10'];
+	}
+
+	# WorryFreeIncome - CNAME Records
+	dns::record::cname {
+		# Everything else not defined
+		"*.worryfreeincome.info.":
+			zone => 'worryfreeincome.info',
+			data => 'raspberrypi.schaeferzone.net';
 	}
 }
