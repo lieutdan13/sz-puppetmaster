@@ -1,6 +1,5 @@
 #node.pp
 node default {
-	include test_class
 	include utility
 	include puppetagent
 
@@ -74,6 +73,10 @@ node big-bang inherits default {
 		ensure  => present,
 		version => '4.2.12',
 	}
+}
+
+node nebula inherits puppetagent {
+	include devops::client
 }
 
 node raspberrypi inherits puppetagent {
