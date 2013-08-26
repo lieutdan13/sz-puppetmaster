@@ -54,7 +54,7 @@ class sz-dns::server inherits dns::server {
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1'],
-		serial      => 2013080700
+		serial      => 2013082500
 	}
 
 	# SchaeferZone - A Records
@@ -91,6 +91,9 @@ class sz-dns::server inherits dns::server {
 		'cars':
 			zone => $sz_zone,
 			data => 'raspberrypi.schaeferzone.net';
+		'dev.cars':
+			zone => $sz_zone,
+			data => 'nebula.schaeferzone.net';
 		'eternallands':
 			zone => $sz_zone,
 			data => 'raspberrypi.schaeferzone.net';
