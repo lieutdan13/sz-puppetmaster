@@ -77,6 +77,26 @@ node big-bang inherits default {
 
 node nebula inherits puppetagent {
 	include devops::client
+	include sz-dns::client
+
+	#Web/DB server
+	class { 'php': }
+	php::module { 'gd': }
+	class { 'apache': }
+	apache::module { 'rewrite': }
+	apache::module { 'php5': }
+	class { 'mysql': }
+
+	file { '/home/dschaefer/public_html':
+		ensure => directory,
+		group  => dschaefer,
+		owner  => dschaefer,
+	}
+	class { 'schaeferzone_net::site::dev_cars':
+		group => 'dschaefer',
+		owner => 'dschaefer',
+		path  => '/home/dschaefer/public_html/dev.cars.schaeferzone.net',
+	}
 }
 
 node raspberrypi inherits puppetagent {
