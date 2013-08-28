@@ -99,6 +99,33 @@ node nebula inherits puppetagent {
 	}
 }
 
+node 'puppet-dev' inherits puppetagent {
+	class { "network::interfaces":
+		interfaces => {
+			"eth0" => {
+				"method"     => "static",
+				"address"    => "192.168.10.35",
+				"netmask"    => "255.255.255.0",
+				"gateway"    => "192.168.10.1",
+				"dns-domain" => "schaeferzone.net",
+				"dns-search" => "schaeferzone.net marketmaps.co",
+				"dns-nameservers" => "127.0.0.1 8.8.8.8 8.8.4.4",
+			}
+		},
+		auto => ["eth0"]
+	}
+	include devops::client
+	include sz-dns::client
+
+	#Web/DB server
+	class { 'php': }
+	php::module { 'gd': }
+	class { 'apache': }
+	apache::module { 'rewrite': }
+	apache::module { 'php5': }
+	class { 'mysql': }
+}
+
 node raspberrypi inherits puppetagent {
 	class { "network::interfaces":
 		interfaces => {
