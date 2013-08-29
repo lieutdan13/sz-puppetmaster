@@ -109,7 +109,7 @@ node 'puppet-dev' inherits puppetagent {
 				"gateway"    => "192.168.10.1",
 				"dns-domain" => "schaeferzone.net",
 				"dns-search" => "schaeferzone.net marketmaps.co",
-				"dns-nameservers" => "127.0.0.1 8.8.8.8 8.8.4.4",
+				"dns-nameservers" => "192.168.10.10",
 			}
 		},
 		auto => ["eth0"]
