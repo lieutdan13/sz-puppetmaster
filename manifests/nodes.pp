@@ -141,15 +141,17 @@ node raspberrypi inherits puppetagent {
 		},
 		auto => ["eth0"]
 	}
+	include devops # User
 	include devops::server
 	include sz-dns::server
 
 	#Mounted drives	
 	file { "/mnt/lexar-usb":
-		ensure => "directory",
-		owner  => "devops",
-		group  => "devops",
-		mode   => 755,
+		ensure  => "directory",
+		owner   => "devops",
+		group   => "devops",
+		mode    => 755,
+		require => Sshuser['devops'],
 	}
 
 	mount { "/mnt/lexar-usb":
