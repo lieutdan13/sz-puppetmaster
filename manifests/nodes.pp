@@ -117,6 +117,9 @@ node 'puppet-dev' inherits puppetagent {
 	include devops::client
 	include sz-dns::client
 
+	#Imapfilter
+	class { 'sz-misc::imapfilter': }
+
 	#Web/DB server
 	class { 'php': }
 	php::module { 'gd': }
@@ -199,7 +202,9 @@ node raspberrypi inherits puppetagent {
 
 
 	#Imapfilter
-	class { 'sz-misc::imapfilter': }
+#	class { 'sz-misc::imapfilter':
+#		require => Mount["/mnt/lexar-usb"],
+#	}
 
 
 	#Web/DB server
