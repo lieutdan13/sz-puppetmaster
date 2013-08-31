@@ -144,7 +144,7 @@ node raspberrypi inherits puppetagent {
 		},
 		auto => ["eth0"]
 	}
-	include devops # User
+	include devops::client
 	include devops::server
 	include sz-dns::server
 
