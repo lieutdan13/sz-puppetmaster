@@ -123,10 +123,13 @@ node 'puppet-dev' inherits puppetagent {
 	#Web/DB server
 	class { 'php': }
 	php::module { 'gd': }
+	php::module { 'mysql': }
 	class { 'apache': }
 	apache::module { 'rewrite': }
 	apache::module { 'php5': }
 	class { 'mysql': }
+
+	include worryfreeincome::www
 }
 
 node raspberrypi inherits puppetagent {
