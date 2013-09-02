@@ -154,7 +154,7 @@ node raspberrypi inherits puppetagent {
 		owner   => "devops",
 		group   => "devops",
 		mode    => 755,
-		require => Sshuser['devops'],
+		require => Sshclientuser['devops'],
 	}
 
 	mount { "/mnt/lexar-usb":
@@ -186,19 +186,19 @@ node raspberrypi inherits puppetagent {
 
 
 	#Weave
-	class { "weave::install":
-		accept_tou => true,
-		cron       => false,
-	}
-	class { "weave::config":
-		config => {
-			"registered_worker_id" => "lieutdan13",
-			"min_memory" => "256m",
-			"max_memory" => "256m",
-			"weave_log"  => "/tmp/weave.log",
-			"cron"       => "1",
-		}
-	}
+#	class { "weave::install":
+#		accept_tou => true,
+#		cron       => false,
+#	}
+#	class { "weave::config":
+#		config => {
+#			"registered_worker_id" => "lieutdan13",
+#			"min_memory" => "256m",
+#			"max_memory" => "256m",
+#			"weave_log"  => "/tmp/weave.log",
+#			"cron"       => "1",
+#		}
+#	}
 
 
 	#Imapfilter
@@ -210,6 +210,7 @@ node raspberrypi inherits puppetagent {
 	#Web/DB server
 	class { 'php': }
 	php::module { 'gd': }
+	php::module { 'mysql': }
 	class { 'apache': }
 	apache::module { 'rewrite': }
 	apache::module { 'php5': }
