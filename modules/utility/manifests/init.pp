@@ -15,6 +15,7 @@ class utility {
 		"apt-utils",
 		"sudo",
 		"tree",
+		'unzip',
 		"vim",
 		"vim-tiny",
 	]
