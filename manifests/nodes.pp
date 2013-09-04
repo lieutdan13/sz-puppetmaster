@@ -15,7 +15,7 @@ node default {
 		'/var/backups/mysql',
 		]:
 		ensure => directory,
-		user   => root,
+		owner  => root,
 		group  => root,
 		mode   => 755,
 	}
@@ -116,7 +116,7 @@ node 'puppet-dev' inherits puppetagent {
         command => "rsync -rtz ${hostname}_backup:/var/backups/ ${backup_dest_dir}/${hostname}",
         hour    => 0,
         minute  => 10,
-        owner   => root,
+        user    => root,
     }
 	class { "network::interfaces":
 		interfaces => {
