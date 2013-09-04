@@ -114,9 +114,9 @@ node 'puppet-dev' inherits puppetagent {
 
     @@cron { "${hostname}-backup":
         command => "rsync -rtz ${hostname}_backup:/var/backups/ ${backup_dest_dir}/${hostname}",
-        user    => root,
         hour    => 0,
         minute  => 10,
+        owner   => root,
     }
 	class { "network::interfaces":
 		interfaces => {
