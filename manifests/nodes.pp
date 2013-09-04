@@ -8,6 +8,17 @@ node default {
 	        servers    => [ 'time1.google.com', 'time2.google.com', 'time3.google.com', 'time4.google.com' ],
 		autoupdate => true,
 	}
+
+	file { [
+		'/var/backups',
+		'/var/backups/www',
+		'/var/backups/mysql',
+		]:
+		ensure => directory,
+		user   => root,
+		group  => root,
+		mode   => 755,
+	}
 }
 
 #This only applies to non-masters
@@ -100,6 +111,13 @@ node nebula inherits puppetagent {
 }
 
 node 'puppet-dev' inherits puppetagent {
+
+    @@cron { "${hostname}-backup":
+        command => "rsync -rtz ${hostname}_backup:/var/backups/ ${backup_dest_dir}/${hostname}"
+        user    => root,
+        hour    => 0,
+        minute  => 10,
+    }
 	class { "network::interfaces":
 		interfaces => {
 			"eth0" => {
@@ -183,6 +201,13 @@ node raspberrypi inherits puppetagent {
 		options => "defaults",
 		atboot  => "true",
 		require => File["/mnt/WD2500YS"],
+	}
+	file { $backup_dest_dir:
+		ensure  => "directory",
+		owner   => "root",
+		group   => "root",
+		mode    => 755,
+		require => Mount["/mnt/WD2500YS"],
 	}
 
 	include raspberry-pi

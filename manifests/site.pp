@@ -5,6 +5,7 @@ $devops_uid = $hostname ? {
 	'raspberrypi' => 1001,
 	default       => 10001,
 }
+$backup_dest_dir = '/mnt/WD2500YS/backup'
 
 include sshauth
 define sshuser (
