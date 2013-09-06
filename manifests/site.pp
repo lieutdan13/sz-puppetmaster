@@ -2,7 +2,7 @@ $local_dns_ip = "192.168.10.10"
 $domain_name="schaeferzone.net"
 $ssh_domain_name="schaeferzone.net"
 $devops_uid = $hostname ? {
-	'raspberrypi' => 1001,
+	'raspberrypi' => 10001,
 	default       => 10001,
 }
 $backup_dest_dir = '/mnt/WD2500YS/backup'
