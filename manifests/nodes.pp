@@ -144,7 +144,8 @@ node 'puppet-dev' inherits puppetagent {
 	#Web/DB server
 	include schaeferzone_net::web
 
-	include worryfreeincome::www
+	include schaeferzone_net::wordpress
+#	include worryfreeincome::www
 }
 
 node raspberrypi inherits puppetagent {
