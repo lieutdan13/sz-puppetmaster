@@ -23,7 +23,7 @@ echo $FQDN > /etc/hostname
 hostname $FQDN
 
 #Add a static entry in the hosts file
-echo "127.0.0.1 localhost $HOSTNAME $FQDN" > /etc/hosts
+echo "127.0.0.1 $FQDN $HOSTNAME localhost" > /etc/hosts
 
 MESSAGE="The hostname has been set to $FQDN"
 logger $MESSAGE
