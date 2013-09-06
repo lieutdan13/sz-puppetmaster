@@ -239,13 +239,7 @@ node raspberrypi inherits puppetagent {
 
 
 	#Web/DB server
-	class { 'php': }
-	php::module { 'gd': }
-	php::module { 'mysql': }
-	class { 'apache': }
-	apache::module { 'rewrite': }
-	apache::module { 'php5': }
-	class { 'mysql': }
+	include schaeferzone_net::web
 
 	#MarketMaps.co
 	include www_marketmaps_co
