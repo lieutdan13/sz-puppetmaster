@@ -142,13 +142,7 @@ node 'puppet-dev' inherits puppetagent {
 	class { 'sz-misc::imapfilter': }
 
 	#Web/DB server
-	class { 'php': }
-	php::module { 'gd': }
-#	php::module { 'mysql': } #Not needed if installing worryfreeincome::www
-	class { 'apache': }
-	apache::module { 'rewrite': }
-	apache::module { 'php5': }
-	class { 'mysql': }
+	include schaeferzone_net::web
 
 	include worryfreeincome::www
 }
