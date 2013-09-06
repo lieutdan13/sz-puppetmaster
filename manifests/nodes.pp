@@ -26,6 +26,9 @@ node puppetagent inherits default {
 	class { 'puppetagent::agent_only': }
 }
 
+node a-web-1 inherits puppetagent {
+}
+
 node big-bang inherits default {
 	class { "network::interfaces":
 		interfaces => {
