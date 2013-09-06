@@ -28,8 +28,7 @@ echo "127.0.0.1 $FQDN $HOSTNAME localhost" > /etc/hosts
 MESSAGE="The hostname has been set to $FQDN"
 logger $MESSAGE
 
-#Configure and install puppet
-echo "server=puppet.schaeferzone.net" >> /etc/puppet/puppet.conf
+#Install puppet
 apt-get -y install puppet
 
 MESSAGE1="The machine is now ready for its first puppet run"
