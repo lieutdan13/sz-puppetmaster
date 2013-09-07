@@ -121,6 +121,11 @@ node 'puppet-dev' inherits puppetagent {
         minute  => 10,
         user    => root,
     }
+	@@file { "${hostname}-backup":
+		ensure => directory,
+		path   => "${backup_dest_dir}/${hostname}",
+		tag    => "client-backups",
+	}
 	class { "network::interfaces":
 		interfaces => {
 			"eth0" => {
@@ -257,5 +262,11 @@ node raspberrypi inherits puppetagent {
 		ensure  => directory,
 		recurse => true,
 		require => Mount["/mnt/lexar-usb"],
+	}
+
+	File <<| tag == 'client-backups' |>> {
+		owner => devops,
+		group => devops,
+		require => Mount['/mnt/WD2500YS'],
 	}
 }
