@@ -54,7 +54,7 @@ class sz-dns::server inherits dns::server {
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1'],
-		serial      => 2013090500
+		serial      => 2013090700
 	}
 
 	# SchaeferZone - A Records
@@ -78,6 +78,10 @@ class sz-dns::server inherits dns::server {
 		'eclipse':
 			zone => $sz_zone,
 			data => ['192.168.10.25'],
+			ptr  => true;
+		'puppet-dev':
+			zone => $sz_zone,
+			data => ['192.168.10.35'],
 			ptr  => true;
 
 	}
