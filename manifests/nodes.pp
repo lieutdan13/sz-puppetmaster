@@ -19,6 +19,9 @@ node default {
 		group  => root,
 		mode   => 755,
 	}
+
+	@@sshkey { $hostname: type => dsa, key => $sshdsakey }
+	Sshkey <<| |>>
 }
 
 #This only applies to non-masters
