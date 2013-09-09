@@ -92,6 +92,9 @@ class sz-dns::server inherits dns::server {
 		"*.${sz_zone}.":
 			zone => $sz_zone,
 			data => 'eclipse.schaeferzone.net';
+		'a-rds-1':
+			zone => $sz_zone,
+			data => 'a-rds-1.c6n1vta92qqg.us-east-1.rds.amazonaws.com';
 		'a-web-1':
 			zone => $sz_zone,
 			data => 'ec2-54-226-251-64.compute-1.amazonaws.com';
