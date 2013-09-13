@@ -21,6 +21,7 @@ node default {
 	}
 
 	@@sshkey { $hostname: type => dsa, key => $sshdsakey }
+	@@sshkey { $fqdn: type => dsa, key => $sshdsakey }
 	Sshkey <<| |>>
 }
 
