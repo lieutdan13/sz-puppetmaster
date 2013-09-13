@@ -148,7 +148,7 @@ class sz-dns::server inherits dns::server {
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1.schaeferzone.net'],
-		serial      => 2013081500
+		serial      => 2013091300
 	}
 
 	# WorryFreeIncome - A Records
@@ -156,7 +156,7 @@ class sz-dns::server inherits dns::server {
 		'@.worryfreeincome.info':
 			host => '@',
 			zone => 'worryfreeincome.info',
-			data => ['192.168.10.10'];
+			data => ['50.63.202.24'];
 	}
 
 	# WorryFreeIncome - CNAME Records
@@ -164,6 +164,6 @@ class sz-dns::server inherits dns::server {
 		# Everything else not defined
 		"*.worryfreeincome.info.":
 			zone => 'worryfreeincome.info',
-			data => 'raspberrypi.schaeferzone.net';
+			data => 'a-web-1.schaeferzone.net';
 	}
 }
