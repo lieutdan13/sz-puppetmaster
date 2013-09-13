@@ -256,7 +256,7 @@ node raspberrypi inherits puppetagent {
 		recurse => true,
 		require => Mount["/mnt/lexar-usb"],
 	}
-	class { 'schaeferzone_net::backups::server':
+	class { 'schaeferzone_net::backup::server':
 		require => Mount['/mnt/WD2500YS'],
 	}
 
