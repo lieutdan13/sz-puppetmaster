@@ -118,17 +118,6 @@ node nebula inherits puppetagent {
 
 node 'puppet-dev' inherits puppetagent {
 
-    @@cron { "${hostname}-backup":
-        command => "rsync -rtz ${hostname}_backup:/var/backups/ ${backup_dest_dir}/${hostname}",
-        hour    => 0,
-        minute  => 10,
-        user    => root,
-    }
-	@@file { "${hostname}-backup":
-		ensure => directory,
-		path   => "${backup_dest_dir}/${hostname}",
-		tag    => "client-backups",
-	}
 	class { "network::interfaces":
 		interfaces => {
 			"eth0" => {
@@ -145,6 +134,22 @@ node 'puppet-dev' inherits puppetagent {
 	}
 	include devops::client
 	include sz-dns::client
+
+	#Backups
+	sshauth::key { "backups@${hostname}": filename => "backups@${hostname}", user => root, }
+	sshauth::server { "backups@${hostname}": }
+	@@file { "${hostname}-backup":
+		ensure => directory,
+		path   => "${backup_dest_dir}/${hostname}",
+		tag    => "client-backup-dir",
+	}
+	@@cron { "${hostname}-backup":
+		command => "rsync -rtz backups@${hostname}:/var/backups/ ${backup_dest_dir}/${hostname}",
+		hour    => 22,
+		minute  => 10,
+		user    => root,
+		tag    => "client-backup-cron",
+	}
 
 	#Imapfilter
 	class { 'sz-misc::imapfilter': }
@@ -173,6 +178,18 @@ node raspberrypi inherits puppetagent {
 	include devops::client
 	include devops::server
 	include sz-dns::server
+	sshauth::client { "backups@puppet-dev": }
+
+	sshauth::user::config { "root":
+		user        => "root",
+		ssh_aliases => {
+			"backups@puppet-dev" => {
+				"hostname" => "puppet-dev.schaeferzone.net",
+				"user"     => "root",
+				"file"     => "~/.ssh/backups@puppet-dev"
+			},
+		},
+	}
 
 	#Mounted drives	
 	file { "/mnt/lexar-usb":
@@ -266,9 +283,13 @@ node raspberrypi inherits puppetagent {
 		require => Mount["/mnt/lexar-usb"],
 	}
 
-	File <<| tag == 'client-backups' |>> {
+	File <<| tag == 'client-backup-dir' |>> {
 		owner => devops,
 		group => devops,
+		require => Mount['/mnt/WD2500YS'],
+	}
+
+	Cron <<| tag == 'client-backup-cron' |>> {
 		require => Mount['/mnt/WD2500YS'],
 	}
 }
