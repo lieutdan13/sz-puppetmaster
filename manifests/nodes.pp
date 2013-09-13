@@ -21,6 +21,8 @@ node puppetagent inherits default {
 }
 
 node a-web-1 inherits puppetagent {
+	include devops::client
+	include worryfreeincome::www
 }
 
 node big-bang inherits default {
@@ -130,8 +132,6 @@ node 'puppet-dev' inherits puppetagent {
 	class { 'sz-misc::imapfilter': }
 
 	#Web/DB server
-	include schaeferzone_net::web
-
 	include worryfreeincome::www
 }
 
