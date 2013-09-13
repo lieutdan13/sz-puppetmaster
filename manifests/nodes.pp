@@ -145,7 +145,7 @@ node 'puppet-dev' inherits puppetagent {
 	}
 	@@cron { "${hostname}-backup":
 		command => "rsync -rtz backups@${hostname}:/var/backups/ ${backup_dest_dir}/${hostname}",
-		hour    => 22,
+		hour    => 0,
 		minute  => 10,
 		user    => root,
 		tag    => "client-backup-cron",
@@ -290,6 +290,7 @@ node raspberrypi inherits puppetagent {
 	}
 
 	Cron <<| tag == 'client-backup-cron' |>> {
+		minute  => 10,
 		require => Mount['/mnt/WD2500YS'],
 	}
 }
