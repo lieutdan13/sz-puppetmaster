@@ -147,7 +147,7 @@ node 'puppet-dev' inherits puppetagent {
 		tag    => "client-backup-dir",
 	}
 	@@cron { "${hostname}-backup":
-		command => "rsync -rtz backups@${hostname}:/var/backups/ ${backup_dest_dir}/${hostname}",
+		command => "rsync -rtz backups_${hostname}:/var/backups/ ${backup_dest_dir}/${hostname}",
 		hour    => 0,
 		minute  => 10,
 		user    => root,
@@ -185,7 +185,7 @@ node raspberrypi inherits puppetagent {
 	sshauth::user::config { "root":
 		user        => "root",
 		ssh_aliases => {
-			"backups@puppet-dev" => {
+			"backups_puppet-dev" => {
 				"hostname" => "puppet-dev.schaeferzone.net",
 				"user"     => "root",
 				"file"     => "~/.ssh/backups@puppet-dev"
