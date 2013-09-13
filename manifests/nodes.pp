@@ -138,6 +138,9 @@ node 'puppet-dev' inherits puppetagent {
 	#Backups
 	sshauth::key { "backups@${hostname}": filename => "backups@${hostname}", user => root, }
 	sshauth::server { "backups@${hostname}": }
+	@@sshauth::client { "backups@${hostname}":
+		tag    => "client-backup-key",
+	}
 	@@file { "${hostname}-backup":
 		ensure => directory,
 		path   => "${backup_dest_dir}/${hostname}",
@@ -178,7 +181,6 @@ node raspberrypi inherits puppetagent {
 	include devops::client
 	include devops::server
 	include sz-dns::server
-	sshauth::client { "backups@puppet-dev": }
 
 	sshauth::user::config { "root":
 		user        => "root",
@@ -290,7 +292,11 @@ node raspberrypi inherits puppetagent {
 	}
 
 	Cron <<| tag == 'client-backup-cron' |>> {
-		minute  => 10,
+		hour    => 22,
+		minute  => 22,
 		require => Mount['/mnt/WD2500YS'],
+	}
+
+	Sshauth::Client <<| tag == 'client-backup-key' |>> {
 	}
 }
