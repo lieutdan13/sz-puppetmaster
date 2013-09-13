@@ -8,17 +8,7 @@ node default {
 	        servers    => [ 'time1.google.com', 'time2.google.com', 'time3.google.com', 'time4.google.com' ],
 		autoupdate => true,
 	}
-
-	file { [
-		'/var/backups',
-		'/var/backups/www',
-		'/var/backups/mysql',
-		]:
-		ensure => directory,
-		owner  => root,
-		group  => root,
-		mode   => 755,
-	}
+	include schaeferzone_net::backup::client
 
 	@@sshkey { $hostname: type => dsa, key => $sshdsakey }
 	@@sshkey { $fqdn: type => dsa, key => $sshdsakey }
@@ -135,25 +125,6 @@ node 'puppet-dev' inherits puppetagent {
 	}
 	include devops::client
 	include sz-dns::client
-
-	#Backups
-	sshauth::key { "backups@${hostname}": filename => "backups@${hostname}", user => root, }
-	sshauth::server { "backups@${hostname}": }
-	@@sshauth::client { "backups@${hostname}":
-		tag    => "client-backup-key",
-	}
-	@@file { "${hostname}-backup":
-		ensure => directory,
-		path   => "${backup_dest_dir}/${hostname}",
-		tag    => "client-backup-dir",
-	}
-	@@cron { "${hostname}-backup":
-		command => "rsync -rtz backups_${hostname}:/var/backups/ ${backup_dest_dir}/${hostname}",
-		hour    => 1,
-		minute  => fqdn_rand(59),
-		user    => root,
-		tag    => "client-backup-cron",
-	}
 
 	#Imapfilter
 	class { 'sz-misc::imapfilter': }
@@ -285,17 +256,8 @@ node raspberrypi inherits puppetagent {
 		recurse => true,
 		require => Mount["/mnt/lexar-usb"],
 	}
-
-	File <<| tag == 'client-backup-dir' |>> {
-		owner => devops,
-		group => devops,
+	class { 'schaeferzone_net::backups::server':
 		require => Mount['/mnt/WD2500YS'],
 	}
 
-	Cron <<| tag == 'client-backup-cron' |>> {
-		require => Mount['/mnt/WD2500YS'],
-	}
-
-	Sshauth::Client <<| tag == 'client-backup-key' |>> {
-	}
 }
