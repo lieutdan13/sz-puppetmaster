@@ -129,7 +129,7 @@ node 'puppet-dev' inherits puppetagent {
 	include sz-dns::client
 
 	#Imapfilter
-	class { 'sz-misc::imapfilter': }
+	#class { 'sz-misc::imapfilter': }
 
 	#Web/DB server
 	include worryfreeincome::www
@@ -226,9 +226,9 @@ node raspberrypi inherits puppetagent {
 
 
 	#Imapfilter
-#	class { 'sz-misc::imapfilter':
-#		require => Mount["/mnt/lexar-usb"],
-#	}
+	class { 'sz-misc::imapfilter':
+		require => Mount["/mnt/lexar-usb"],
+	}
 
 
 	#Web/DB server
