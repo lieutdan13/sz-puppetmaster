@@ -132,7 +132,7 @@ node 'puppet-dev' inherits puppetagent {
 	#class { 'sz-misc::imapfilter': }
 
 	#Web/DB server
-	include worryfreeincome::www
+	include worryfreeincome::dev
 }
 
 node raspberrypi inherits puppetagent {
