@@ -128,6 +128,11 @@ node 'puppet-dev' inherits puppetagent {
 	include devops::client
 	include sz-dns::client
 
+	class { 'schaeferzone_net::backup::server': {
+		bacula => true,
+		rsync  => false,
+	}
+
 	#Imapfilter
 	#class { 'sz-misc::imapfilter': }
 
