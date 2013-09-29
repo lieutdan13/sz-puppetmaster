@@ -59,5 +59,5 @@ define sshserveruser (
 
 class test_class {
 }
-
+import '../modules/sz-misc/manifests/secret_vars.pp'
 import "nodes"
