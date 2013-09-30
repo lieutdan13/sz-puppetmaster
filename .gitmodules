@@ -58,3 +58,6 @@
 [submodule "modules/bacula"]
 	path = modules/bacula
 	url = https://github.com/lieutdan13/puppet-bacula.git
+[submodule "modules/ip-facts"]
+	path = modules/ip-facts
+	url = https://github.com/lieutdan13/puppet-ip-facts.git
