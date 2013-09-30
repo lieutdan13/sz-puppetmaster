@@ -61,3 +61,6 @@
 [submodule "modules/ip-facts"]
 	path = modules/ip-facts
 	url = https://github.com/lieutdan13/puppet-ip-facts.git
+[submodule "modules/hostname"]
+	path = modules/hostname
+	url = https://github.com/lieutdan13/puppet-hostname.git
