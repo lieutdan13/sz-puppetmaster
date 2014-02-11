@@ -67,3 +67,6 @@
 [submodule "modules/afishingaddiction"]
 	path = modules/afishingaddiction
 	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-afishingaddiction.git
+[submodule "modules/ultimatepredators"]
+	path = modules/ultimatepredators
+	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-ultimatepredators.git
