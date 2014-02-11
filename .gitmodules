@@ -64,3 +64,6 @@
 [submodule "modules/hostname"]
 	path = modules/hostname
 	url = https://github.com/lieutdan13/puppet-hostname.git
+[submodule "modules/afishingaddiction"]
+	path = modules/afishingaddiction
+	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-afishingaddiction.git
