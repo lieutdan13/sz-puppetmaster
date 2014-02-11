@@ -23,6 +23,7 @@ node puppetagent inherits default {
 node a-web-1 inherits puppetagent {
 	include devops::client
 	include worryfreeincome::www
+	include afishingaddiction::www
 }
 
 node big-bang inherits default {
