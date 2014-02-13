@@ -20,7 +20,7 @@ define sshuser (
 		ensure => $ensure,
 		home   => $home,
 		uid    => $uid,
-		gid    => $title,
+		gid    => $gid,
 		shell  => $shell,
 		groups => $groups,
 	}
