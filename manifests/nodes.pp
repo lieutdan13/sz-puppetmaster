@@ -21,6 +21,12 @@ node puppetagent inherits default {
 }
 
 node a-web-1 inherits puppetagent {
+	class { 'schaeferzone_net::web':
+		apache_config => {
+			'MaxSpareServers' => 8,
+			'MaxClients'      => 8,
+		},
+	}
 	include devops::client
 	include worryfreeincome::www
 	include afishingaddiction::www
