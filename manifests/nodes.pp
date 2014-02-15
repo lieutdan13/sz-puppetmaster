@@ -84,6 +84,8 @@ node big-bang inherits default {
 		ensure  => present,
 		version => '4.2.12',
 	}
+
+	package { 'apache2-utils': ensure => installed, }
 }
 
 node nebula inherits puppetagent {
