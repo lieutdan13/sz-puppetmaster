@@ -23,8 +23,12 @@ node puppetagent inherits default {
 node a-web-1 inherits puppetagent {
 	class { 'schaeferzone_net::web':
 		apache_config => {
-			'MaxSpareServers' => 8,
-			'MaxClients'      => 8,
+			'MaxClients'      => 16,
+			'MaxRequestsPerChild' => 0,
+			'MaxSpareServers' => 5,
+			'MinSpareServers' => 1,
+			'ServerLimit'     => 16,
+			'StartServers'    => 1,
 		},
 		mysql_server  => false,
 	}
