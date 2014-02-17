@@ -26,6 +26,7 @@ node a-web-1 inherits puppetagent {
 			'MaxSpareServers' => 8,
 			'MaxClients'      => 8,
 		},
+		install_mysql_server => false,
 	}
 	include devops::client
 	include worryfreeincome::www
