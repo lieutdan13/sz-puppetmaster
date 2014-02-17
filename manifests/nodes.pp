@@ -29,8 +29,12 @@ node a-web-1 inherits puppetagent {
 		install_mysql_server => false,
 	}
 	include devops::client
-	include worryfreeincome::www
-	include afishingaddiction::www
+	class { 'worryfreeincome::www':
+		require => Class['schaeferzone_net::web'],
+	}
+	class { 'afishingaddiction::www':
+		require => Class['schaeferzone_net::web'],
+	}
 }
 
 node big-bang inherits default {
