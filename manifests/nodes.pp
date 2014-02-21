@@ -146,10 +146,10 @@ node 'puppet-dev' inherits puppetagent {
 	include devops::client
 	include sz-dns::client
 
-	class { 'schaeferzone_net::backup::server':
-		bacula => true,
-		rsync  => false,
-	}
+#	class { 'schaeferzone_net::backup::server':
+#		bacula => true,
+#		rsync  => false,
+#	}
 	class { 'schaeferzone_net::web':
 		apache_config => {
 			'MaxClients'      => 16,
