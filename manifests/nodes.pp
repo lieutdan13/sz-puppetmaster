@@ -150,6 +150,16 @@ node 'puppet-dev' inherits puppetagent {
 		bacula => true,
 		rsync  => false,
 	}
+	class { 'schaeferzone_net::web':
+		apache_config => {
+			'MaxClients'      => 16,
+			'MaxRequestsPerChild' => 100,
+			'MaxSpareServers' => 5,
+			'MinSpareServers' => 1,
+			'ServerLimit'     => 16,
+			'StartServers'    => 1,
+		},
+	}
 
 	#Imapfilter
 	#class { 'sz-misc::imapfilter': }
