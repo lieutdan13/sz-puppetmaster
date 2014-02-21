@@ -70,3 +70,6 @@
 [submodule "modules/ultimatepredators"]
 	path = modules/ultimatepredators
 	url = devops@raspberrypi.schaeferzone.net:/mnt/lexar-usb/puppet-ultimatepredators.git
+[submodule "modules/lieutdan13"]
+	path = modules/lieutdan13
+	url = https://github.com/lieutdan13/puppet-lieutdan13.git
