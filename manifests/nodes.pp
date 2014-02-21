@@ -155,7 +155,15 @@ node 'puppet-dev' inherits puppetagent {
 	#class { 'sz-misc::imapfilter': }
 
 	#Web/DB server
-	include worryfreeincome::dev
+#	include worryfreeincome::dev
+
+	class { 'lieutdan13::wordpress':
+            db_password => 'm97FaqzvtN8qUrH',
+            db_user     => 'wrdprss',
+            multidb     => false,
+            multisite   => 'allow',
+            version     => '3.8.1',
+        }
 }
 
 node raspberrypi inherits puppetagent {
