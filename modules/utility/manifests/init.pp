@@ -1,6 +1,7 @@
 #import classes/*.pp
 
 class utility {
+	include lieutdan13::essentials
 	file { "/usr/local/bin/randomSleep":
 		ensure  => present,
 		mode    => 755,
@@ -15,7 +16,6 @@ class utility {
 		"apt-utils",
 		"sudo",
 		"tree",
-		'unzip',
 		"vim",
 		"vim-tiny",
 	]
