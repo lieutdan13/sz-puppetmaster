@@ -12,6 +12,7 @@ node default {
 		},
 		module_path  => '/etc/puppet/modules',
 		passenger    => false,
+		reports      => 'store',
 		runmode      => 'manual',
 		server       => 'puppet',
 		storeconfigs => true,
