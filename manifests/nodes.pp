@@ -166,6 +166,15 @@ node 'puppet-dev' inherits puppetagent {
 
 	#Web/DB server
 #	include worryfreeincome::dev
+        apache::vhost { "blogs-dev.schaeferzone.net":
+            directory                => '/var/www/wordpress',
+            directory_allow_override => 'All',
+            directory_options        => 'Indexes FollowSymLinks MultiViews',
+            docroot                  => '/var/www/wordpress',
+            port                     => '80',
+            priority                 => '50',
+            server_admin             => 'dan@schaeferzone.net',
+        }
 
 	class { 'lieutdan13::wordpress':
             db_password => 'm97FaqzvtN8qUrH',
