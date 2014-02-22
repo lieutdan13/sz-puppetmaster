@@ -95,10 +95,10 @@ node big-bang inherits default {
 	}
 	include sz-dns::client
 
-	class { 'virtualbox::guest_additions':
-		ensure  => present,
-		version => '4.2.12',
-	}
+#	class { 'virtualbox::guest_additions':
+#		ensure  => present,
+#		version => '4.2.12',
+#	}
 
 	package { 'apache2-utils': ensure => installed, }
 }
