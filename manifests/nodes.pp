@@ -66,7 +66,7 @@ node big-bang inherits default {
 		auto => ["eth0"]
 	}
 
-	include puppetmaster
+#	include puppetmaster
 	include sshauth::keymaster
 	include devops::key
 	include devops::client
