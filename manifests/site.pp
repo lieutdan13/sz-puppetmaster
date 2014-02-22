@@ -6,6 +6,10 @@ $devops_uid = $hostname ? {
 	default       => 10001,
 }
 $backup_dest_dir = '/mnt/WD2500YS/backup'
+$is_puppet_master = $::hostname ? {
+	'big-bang' => true,
+	default    => false,
+}
 
 include sshauth
 define sshuser (

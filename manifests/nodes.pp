@@ -1,7 +1,16 @@
 #node.pp
 node default {
 	include utility
-	include puppetagent
+
+	class { 'puppet':
+		mode         => $::is_puppet_master ? {
+			true  => 'server',
+			false => 'client',
+		},
+		runmode      => 'manual',
+		storeconfigs => true,
+		version      => 'latest',
+	}
 
 	class { "ntp":
 	        ensure     => running,
