@@ -11,7 +11,6 @@ class utility {
 	}
 
 	$latest_pkgs = [
-		"apt",
 		"apt-show-versions",
 		"apt-utils",
 		"sudo",
