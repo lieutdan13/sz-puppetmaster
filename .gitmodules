@@ -76,3 +76,6 @@
 [submodule "modules/apt"]
 	path = modules/apt
 	url = https://github.com/lieutdan13/puppet-apt.git
+[submodule "modules/puppet"]
+	path = modules/puppet
+	url = https://github.com/lieutdan13/puppet-puppet.git
