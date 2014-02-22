@@ -3,12 +3,18 @@ node default {
 	include utility
 
 	class { 'puppet':
+		bindaddress  => '',
+		environment  => 'production',
 		mode         => $::is_puppet_master ? {
 			true  => 'server',
 			false => 'client',
 		},
+		module_path  => '/etc/puppet/modules',
+		passenger    => false,
 		runmode      => 'manual',
+		server       => 'puppet',
 		storeconfigs => true,
+		template_dir => '/etc/puppet/templates',
 		version      => 'latest',
 	}
 
