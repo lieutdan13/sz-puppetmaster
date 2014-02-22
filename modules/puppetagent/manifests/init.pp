@@ -1,4 +1,5 @@
 class puppetagent {
+	include apt::repo::puppetlabs
 	cron { 'run_agent':
 		ensure  => absent,
 		command => "/usr/local/bin/randomSleep 30; puppet agent --onetime --no-daemonize --logdest syslog > /dev/null 2>&1",
