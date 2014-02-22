@@ -172,6 +172,12 @@ node 'puppet-dev' inherits puppetagent {
             db_user     => 'wrdprss',
             multidb     => false,
             multisite   => 'migrate',
+            options     => {
+                main_site => 'blogs.schaeferzone.net',
+                plugins   => {
+                    'google-analytics-for-wordpress' => '4.3.5',
+                },
+            },
             version     => '3.8.1',
         }
 }
