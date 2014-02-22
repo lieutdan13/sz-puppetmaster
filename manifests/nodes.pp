@@ -5,6 +5,7 @@ node default {
 	class { 'puppet':
 		bindaddress  => '',
 		environment  => 'production',
+		manifest_path => '/etc/puppet/manifests/site.pp',
 		mode         => $::is_puppet_master ? {
 			true  => 'server',
 			false => 'client',
