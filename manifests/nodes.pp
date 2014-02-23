@@ -202,7 +202,7 @@ node 'puppet-dev' inherits puppetagent {
             db_password => 'm97FaqzvtN8qUrH',
             db_user     => 'wrdprss',
             multidb     => false,
-            multisite   => 'allow',
+            multisite   => 'migrate',
             options     => {
                 main_site => 'blogs.schaeferzone.net',
                 plugins   => {
