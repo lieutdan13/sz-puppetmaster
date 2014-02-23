@@ -188,7 +188,7 @@ node 'puppet-dev' inherits puppetagent {
 
 	#Web/DB server
 #	include worryfreeincome::dev
-        apache::vhost { "blogs-dev.schaeferzone.net":
+        apache::vhost { "blogs.schaeferzone.net":
             directory                => '/var/www/wordpress',
             directory_allow_override => 'All',
             directory_options        => 'Indexes FollowSymLinks MultiViews',
