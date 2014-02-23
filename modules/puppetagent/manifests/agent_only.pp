@@ -6,8 +6,8 @@ class puppetagent::agent_only {
 		ip         => '192.168.10.5',
 		name       => 'puppet',
 	}
-	file { '/etc/puppet/puppet.conf':
-		ensure     => present,
-		content    => template("puppetagent/puppet.conf"),
-	}
+#	file { '/etc/puppet/puppet.conf':
+#		ensure     => present,
+#		content    => template("puppetagent/puppet.conf"),
+#	}
 }

@@ -2,6 +2,7 @@
 node default {
 	include utility
 
+	if $::is_puppet_master == false { #Not ready to configure Master yet
 	class { 'puppet':
 		bindaddress  => '',
 		environment  => 'production',
@@ -18,6 +19,7 @@ node default {
 		storeconfigs => true,
 		template_dir => '/etc/puppet/templates',
 		version      => 'latest',
+	}
 	}
 
 	class { "ntp":
