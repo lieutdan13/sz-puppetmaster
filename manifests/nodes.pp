@@ -78,7 +78,7 @@ node a-web-1 inherits puppetagent {
             db_type     => 'remote_mysql',
             db_user     => 'wrdprss',
             multidb     => false,
-            multisite   => 'allow',
+            multisite   => 'migrate',
             options     => {
                 main_site => 'blogs.schaeferzone.net',
                 plugins   => {
