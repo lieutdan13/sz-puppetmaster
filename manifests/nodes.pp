@@ -73,7 +73,9 @@ node a-web-1 inherits puppetagent {
 
 	class { 'lieutdan13::wordpress':
             db_name     => 'wordpress',
-            db_password => 'uaEPVNvgo9T7yC6',
+            db_password => $blogs_schaeferzone_db_pass,
+            db_host     => $ards1_host,
+            db_type     => 'remote_mysql',
             db_user     => 'wrdprss',
             multidb     => false,
             multisite   => 'allow',
@@ -83,6 +85,8 @@ node a-web-1 inherits puppetagent {
                     'google-analytics-for-wordpress' => '4.3.5',
                 },
             },
+            remote_password => $ards1_password,
+            remote_user     => $ards1_user,
             version     => '3.8.1',
         }
 }
