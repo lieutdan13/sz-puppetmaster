@@ -1,6 +1,8 @@
-$local_dns_ip = "192.168.10.10"
-$domain_name="schaeferzone.net"
-$ssh_domain_name="schaeferzone.net"
+$domain_name      = 'schaeferzone.net'
+$local_dns_ip     = '192.168.10.10'
+$ssh_domain_name  = 'schaeferzone.net'
+$webmaster_email  = 'dan@schaeferzone.net'
+
 $devops_uid = $hostname ? {
 	'raspberrypi' => 10001,
 	default       => 10001,
