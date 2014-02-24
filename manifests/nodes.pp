@@ -46,7 +46,7 @@ node a-web-1 inherits puppetagent {
 	class { 'schaeferzone_net::web':
 		apache_config => {
 			'MaxClients'      => 16,
-			'MaxRequestsPerChild' => 0,
+			'MaxRequestsPerChild' => 500,
 			'MaxSpareServers' => 5,
 			'MinSpareServers' => 1,
 			'ServerLimit'     => 16,
@@ -55,12 +55,36 @@ node a-web-1 inherits puppetagent {
 		mysql_server  => false,
 	}
 	include devops::client
-	class { 'worryfreeincome::www':
-		require => Class['schaeferzone_net::web'],
-	}
-	class { 'afishingaddiction::www':
-		require => Class['schaeferzone_net::web'],
-	}
+#	class { 'worryfreeincome::www':
+#		require => Class['schaeferzone_net::web'],
+#	}
+#	class { 'afishingaddiction::www':
+#		require => Class['schaeferzone_net::web'],
+#	}
+        apache::vhost { "blogs.schaeferzone.net":
+            directory                => '/var/www/wordpress',
+            directory_allow_override => 'All',
+            directory_options        => 'Indexes FollowSymLinks MultiViews',
+            docroot                  => '/var/www/wordpress',
+            port                     => '80',
+            priority                 => '50',
+            server_admin             => $::webmaster_email,
+        }
+
+	class { 'lieutdan13::wordpress':
+            db_name     => 'wordpress',
+            db_password => 'uaEPVNvgo9T7yC6',
+            db_user     => 'wrdprss',
+            multidb     => false,
+            multisite   => 'allow',
+            options     => {
+                main_site => 'blogs.schaeferzone.net',
+                plugins   => {
+                    'google-analytics-for-wordpress' => '4.3.5',
+                },
+            },
+            version     => '3.8.1',
+        }
 }
 
 node big-bang inherits default {
