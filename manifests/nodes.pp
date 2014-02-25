@@ -80,6 +80,11 @@ node a-web-1 inherits puppetagent {
             multidb     => false,
             multisite   => true,
             options     => {
+                backup    => {
+                    backup_dir => '/var/backups/mysql',
+                    cron_dated => true,
+                    enabled    => true,
+                },
                 main_site => 'blogs.schaeferzone.net',
                 plugins   => {
                     'google-analytics-for-wordpress' => '4.3.5',
