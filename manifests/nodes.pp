@@ -82,6 +82,7 @@ node a-web-1 inherits puppetagent {
             options     => {
                 backup    => {
                     backup_dir => '/var/backups/mysql',
+                    compress   => true,
                     cron_dated => true,
                     enabled    => true,
                 },
