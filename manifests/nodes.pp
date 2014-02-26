@@ -98,6 +98,7 @@ node a-web-1 inherits puppetagent {
                 main_site => 'blogs.schaeferzone.net',
                 plugins   => {
                     'google-analytics-for-wordpress' => '4.3.5',
+                    'resume-page' => true,
                 },
             },
             remote_password => $ards1_password,
