@@ -70,6 +70,15 @@ node a-web-1 inherits puppetagent {
             priority                 => '50',
             server_admin             => $::webmaster_email,
         }
+        apache::vhost { "www.schaeferzone.net":
+            directory                => '/var/www/wordpress',
+            directory_allow_override => 'All',
+            directory_options        => 'Indexes FollowSymLinks MultiViews',
+            docroot                  => '/var/www/wordpress',
+            port                     => '80',
+            priority                 => '50',
+            server_admin             => $::webmaster_email,
+        }
 
 	class { 'lieutdan13::wordpress':
             db_name     => 'wordpress',
