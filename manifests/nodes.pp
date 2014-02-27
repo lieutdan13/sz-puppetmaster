@@ -99,6 +99,7 @@ node a-web-1 inherits puppetagent {
                 plugins   => {
                     'google-analytics-for-wordpress' => '4.3.5',
                     'resume-page' => true,
+                    'wordpress-importer' => '0.6.1',
                 },
             },
             remote_password => $ards1_password,
