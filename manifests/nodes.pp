@@ -113,6 +113,9 @@ node a-web-1 inherits puppetagent {
                     'wordpress-importer' => '0.6.1',
                     'wp-google-maps' => true,
                 },
+                themes    => {
+                    'twentytwelve' => '1.3',
+                },
             },
             remote_password => $ards1_password,
             remote_user     => $ards1_user,
