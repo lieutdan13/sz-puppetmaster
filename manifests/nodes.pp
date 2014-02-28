@@ -61,6 +61,16 @@ node a-web-1 inherits puppetagent {
 #	class { 'afishingaddiction::www':
 #		require => Class['schaeferzone_net::web'],
 #	}
+        apache::vhost { "afishingaddiction.com":
+            directory                => '/var/www/wordpress',
+            directory_allow_override => 'All',
+            directory_options        => 'Indexes FollowSymLinks MultiViews',
+            docroot                  => '/var/www/wordpress',
+            port                     => '80',
+            priority                 => '10',
+            server_admin             => $::webmaster_email,
+            server_aliases           => 'www.afishingaddiction.com',
+        }
         apache::vhost { "blogs.schaeferzone.net":
             directory                => '/var/www/wordpress',
             directory_allow_override => 'All',
