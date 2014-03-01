@@ -114,6 +114,7 @@ node a-web-1 inherits puppetagent {
                     'wordpress-importer' => '0.6.1',
                 },
                 themes    => {
+                    'something-fishy' => '1.10',
                     'twentytwelve' => '1.3',
                 },
             },
