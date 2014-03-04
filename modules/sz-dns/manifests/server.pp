@@ -66,7 +66,7 @@ class sz-dns::server inherits dns::server {
 		'a-web-1':
 			zone => $sz_zone,
 			data => ['54.226.251.64'],
-			ptr  => true;
+			ptr  => false;
 		'big-bang':
 			zone => $sz_zone,
 			data => ['192.168.10.5'],
