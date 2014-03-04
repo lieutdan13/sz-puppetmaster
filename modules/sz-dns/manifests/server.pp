@@ -54,7 +54,7 @@ class sz-dns::server inherits dns::server {
 		soa         => 'ns1.schaeferzone.net',
 		soa_email   => 'dan.schaeferzone.net',
 		nameservers => ['ns1'],
-		serial      => 2014022300
+		serial      => 2014030300
 	}
 
 	# SchaeferZone - A Records
@@ -63,6 +63,10 @@ class sz-dns::server inherits dns::server {
 			host => '@',
 			zone => $sz_zone,
 			data => ['192.168.10.25'];
+		'a-web-1':
+			zone => $sz_zone,
+			data => ['54.226.251.64'],
+			ptr  => true;
 		'big-bang':
 			zone => $sz_zone,
 			data => ['192.168.10.5'],
@@ -95,12 +99,12 @@ class sz-dns::server inherits dns::server {
 		'a-rds-1':
 			zone => $sz_zone,
 			data => 'a-rds-1.c6n1vta92qqg.us-east-1.rds.amazonaws.com';
-		'a-web-1':
-			zone => $sz_zone,
-			data => 'ec2-54-226-251-64.compute-1.amazonaws.com';
 		'blogs':
 			zone => $sz_zone,
 			data => 'a-web-1.schaeferzone.net';
+		'blogs-dev':
+			zone => $sz_zone,
+			data => 'puppet-dev.schaeferzone.net';
 		'cars':
 			zone => $sz_zone,
 			data => 'raspberrypi.schaeferzone.net';
@@ -134,7 +138,7 @@ class sz-dns::server inherits dns::server {
 		'www.schaeferzone.net':
 			host => 'www',
 			zone => $sz_zone,
-			data => 'eclipse.schaeferzone.net';
+			data => 'a-web-1.schaeferzone.net';
 	}
 
 	# SchaeferZone - MX Records
