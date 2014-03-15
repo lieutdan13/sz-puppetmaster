@@ -110,7 +110,7 @@ node a-web-1 inherits puppetagent {
                     'advanced-custom-fields' => 'latest-stable',
                     'google-analytics-for-wordpress' => '4.3.5',
                     'jetpack' => 'latest',
-                    'lightbox-gallery' => 'latest',
+                    'responsive-lightbox' => 'latest',
                     'resume-page' => true,
                     'wordpress-importer' => '0.6.1',
                 },
