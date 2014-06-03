@@ -113,6 +113,7 @@ node a-web-1 inherits puppetagent {
                     'responsive-lightbox' => '1.4.4',
                     'resume-page' => true,
                     'wordpress-importer' => '0.6.1',
+                    'wordpress-seo' => '1.5.3.3',
                 },
                 themes    => {
                     'responsive' => '1.9.6.1',
