@@ -121,7 +121,7 @@ node a-web-1 inherits puppetagent {
             },
             remote_password => $ards1_password,
             remote_user     => $ards1_user,
-            version     => '3.8.1',
+            version     => '3.9.1',
         }
 }
 
